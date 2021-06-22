@@ -1,0 +1,92 @@
+{% extends 'static_files/dashboard_receptionist.html' %}
+
+{% block appointment_list %}
+
+<div class="breadcrumbs-area">
+    <h3>Appointment List</h3>
+    <ul>
+        <li>
+            <a href="index.html">Home</a>
+        </li>
+        <li>Appointment List</li>
+    </ul>
+</div>
+
+<div class="card height-auto">
+    <div class="card-body">
+        <div class="heading-layout1">
+            <div class="item-title">
+                <h3>All Appointments Data</h3>
+            </div>
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="true">...</a>
+
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#"><i
+                            class="fas fa-times text-orange-red"></i>Close</a>
+                    <a class="dropdown-item" href="#"><i
+                            class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                    <a class="dropdown-item" href="#"><i
+                            class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                </div>
+            </div>
+        </div>
+        <form class="mg-b-20" method="post">
+            {% csrf_token %}
+            <div class="row gutters-8">
+                <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group">
+                    <input name="s_by_name" type="text" placeholder="Search by Student Name ..." class="form-control">
+                </div>
+                <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group">
+                    <input name="p_by_name" type="text" placeholder="Search by Psychologist Name ..." class="form-control">
+                </div>
+                <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
+                    <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                </div>
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table class="table display data-table text-nowrap">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Teacher/Psychologist Name</th>
+                        <th>Appointment Date and Time</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for obj in objs %}
+                        <tr>
+                            <td>{{ obj.child.full_name }}</td>
+                            <td>{{ obj.psychologist.full_name }}</td>
+                            <td>{{ obj.appointment_date }}; {{ obj.appointment_s_time|date:"G:i:s" }}-{{ obj.appointment_e_time|date:"G:i:s" }}</td>
+                            <td>
+                                {% if obj.status == True %}
+                                    Approved
+                                {% elif obj.status == False %}
+                                    Not Approved
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <span class="flaticon-more-button-of-three-dots"></span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href={% url 'reschedule' obj.id %}>Reschedule</a>
+                                        <a class="dropdown-item" href={% url 'delete-appointment' obj.id %}>Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

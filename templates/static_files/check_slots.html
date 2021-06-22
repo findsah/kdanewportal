@@ -1,0 +1,58 @@
+{% extends 'static_files/dashboard_receptionist.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block check_slots %}
+
+    <div class="breadcrumbs-area">
+        <h3>Slots</h3>
+        <ul>
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li><a href={% url 'add_appointment' %}>Add Appointment</a></li>
+            <li>Confirm Slot</li>
+        </ul>
+    </div>
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="heading-layout1">
+                    <div class="item-title">
+                        <h3>Available Slots for Psychologist "{{ psy.full_name }}" on "{{ date }}"</h3>
+                    </div>
+                   <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">...</a>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table bs-table table-striped table-bordered text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Slot</th>
+                                <th>Select Your slot</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for slot in slots %}
+                                <tr>
+                                    <td>{{ slot.s_time|date:"G:i:s" }} to {{ slot.e_time|date:"G:i:s" }}</td>
+                                    <td><a href={% url 'confirm-appointment' psy.id child.id true_date slot.s_time slot.e_time%}><button class="btn-fill-lmd radius-30 text-light shadow-true-v bg-true-v">Select</button></a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
