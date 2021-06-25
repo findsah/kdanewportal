@@ -1,0 +1,348 @@
+{% extends 'static_files/dashboard_receptionist.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block cc_child_behviour %}
+
+    <div class="breadcrumbs-area">
+        <h3>Child Case Form</h3>
+        <br>
+        <ul>
+            <li><a href="{% url 'child-case' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 1: Child Details</button></a></li>
+            <li>
+                <a href="{% url 'cc_child_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 2: Development Of Child History</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_condition' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 3: Birth Period</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_stages_of_growth' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 4: Stages Of Growth</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_family_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 5: Family History</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_social_development' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 6: Social/Personal Development</button></a>
+            </li>
+            <li>
+                <button style="margin-bottom: 8px" type="button" class="btn-fill-lmd radius-30 text-light bg-true-v">Step 7: Child Behaviour</button>
+            </li>
+             <li>
+                 <a href="{% url 'cc_school_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 8: School History Info</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_difficulties' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 9: Difficulties Info</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_other_info' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 10: Other Info</button></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card ui-tab-card">
+        <div class="card-body">
+            <div class="heading-layout1 mg-b-25">
+                <div class="item-title">
+                    <h3>Child Behaviour</h3>
+                </div>
+               <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">...</a>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                    </div>
+                </div>
+            </div>
+            <form class="new-added-form" method="POST">
+                {% csrf_token %}
+                <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Child Suffers from Mental Illnesses</label>
+                            <select class="select2" name="mental_illness">
+                                <option value="">Please Select Option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <label>Mental Illnesses (If any)</label>
+                            {% render_field form.mental_illnesses class="form-control" %}
+                        </div>
+                        <div class="col-12 form-group mg-t-8">
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Spends Most of the Time Alone</label>
+                            <select class="select2" name="time_alone">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>No specific friends</label>
+                            <select class="select2" name="specific_friend">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Find Difficult to make friends</label>
+                            <select class="select2" name="diff_friend">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Quarrels with friends</label>
+                            <select class="select2" name="quarrel_friends">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-5 col-lg-6 col-12 form-group">
+                            <label>Other children like to play with the child?</label>
+                            <select class="select2" name="o_like_play">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-5 col-lg-6 col-12 form-group">
+                            <label>Other children avoid to play with the child?</label>
+                            <select class="select2" name="o_avoid_play">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-5 col-lg-6 col-12 form-group">
+                            <label>Most of the friends older than the child?</label>
+                            <select class="select2" name="f_older">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-5 col-lg-6 col-12 form-group">
+                            <label>Most of the friends younger than the child?</label>
+                            <select class="select2" name="diff_friend">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Seeks to attract attention</label>
+                            <select class="select2" name="attention_seeker">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Shows confidence in his ability?</label>
+                            <select class="select2" name="confi_ability">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Quite most of the time?</label>
+                            <select class="select2" name="quite">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Impulsive most of the time?</label>
+                            <select class="select2" name="impulsive">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Activity is normal?</label>
+                            <select class="select2" name="activity_normal">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Cooperative with others?</label>
+                            <select class="select2" name="cooperative">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Mostly lies?</label>
+                            <select class="select2" name="lies">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Irritable or moody</label>
+                            <select class="select2" name="moody">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Gets bored quickly</label>
+                            <select class="select2" name="bored">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Completes the assigned tasks</label>
+                            <select class="select2" name="comp_tasks">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Seems Unhappy/Sad/Depressed?</label>
+                            <select class="select2" name="sad">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Looks Cheerful/Upbeat</label>
+                            <select class="select2" name="cheerful">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Quite Aggressive behaviour?</label>
+                            <select class="select2" name="aggressive">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Avoids competition with others</label>
+                            <select class="select2" name="avoid_competition">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Tends to Compete with others</label>
+                            <select class="select2" name="compete_others">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Lazy/Indifferent</label>
+                            <select class="select2" name="lazy">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Performs Leadership roles</label>
+                            <select class="select2" name="leadership">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Self-Reliance/Autonomy</label>
+                            <select class="select2" name="autonomy">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-5 col-lg-6 col-12 form-group">
+                            <label>Takes long time in completing a task?</label>
+                            <select class="select2" name="time_task">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Always seems Anxious</label>
+                            <select class="select2" name="anxious">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Always seems Afraid</label>
+                            <select class="select2" name="feel_afraid">
+                                <option value="">Please Select Option</option>
+                                <option value="not_true">Not True</option>
+                                <option value="rarely">Rarely/Sometimes</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="col-12 form-group mg-t-8" style="width: 100px">
+                            <a href={% url 'cc_social_development' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Previous</button></a>
+                            <a href={% url 'cc_school_history' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Next</button></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

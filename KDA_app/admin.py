@@ -6,8 +6,9 @@ from .models import Person, Role, Hosted_Centres, Appointment, Availability, Slo
 
 
 @admin.register(Person)
-class New_UserAdmin(admin.ModelAdmin):
+class PersonAdmin(admin.ModelAdmin):
     list_display = ['id', 'username', 'full_name', 'role']
+    # prepopulated_fields = {'slug': ('full_name',)}
 
     class Meta:
         model = Person

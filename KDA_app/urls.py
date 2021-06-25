@@ -17,5 +17,16 @@ urlpatterns = [
     path('create-slots/<int:id>/<int:weekday>/', views.create_slots),
     path('slots/<int:id1>/<int:id2>/<str:date>/<str:time_s>/<str:time_e>/confirm-appointment/', views.confirm_appointment, name='confirm-appointment'),
     path('delete-appointment/<int:id>/', views.delete_appointment, name='delete-appointment'),
-    path('reschedule/<int:id>/', views.rescheudle, name='reschedule')
+    path('reschedule/<int:id>/', views.rescheudle, name='reschedule'),
+    path('child-case-form/<str:child_name>/', views.child_case, name='child-case'),
+    path('cc-child-history/<str:child_name>/', views.cc_child_history, name='cc_child_history'),
+    path('cc-condition/<str:child_name>/', views.cc_condition, name='cc_condition'),
+    path('cc-stages-of-growth/<str:child_name>/', views.cc_stages_of_growth, name='cc_stages_of_growth'),
+    path('cc-family-history/<str:child_name>/', views.cc_family_history, name='cc_family_history'),
+    path('cc-social-development/<str:child_name>/', views.cc_social_development, name='cc_social_development'),
+    path('cc-child-behaviour/<str:child_name>/', views.cc_child_beh, name='cc_child-behaviour'),
+    path('cc-school-history/<str:child_name>/', views.cc_school_history, name='cc_school_history'),
+    path('cc-difficulties/<str:child_name>/', views.cc_diff_info, name='cc_difficulties'),
+    path('cc-other-info/<str:child_name>/', views.cc_other_info, name='cc_other_info')
+
 ]

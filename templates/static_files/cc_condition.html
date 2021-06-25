@@ -1,0 +1,144 @@
+{% extends 'static_files/dashboard_receptionist.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block cc_condition %}
+
+    <div class="breadcrumbs-area">
+        <h3>Child Case Form</h3>
+        <br>
+        <ul>
+            <li><a href="{% url 'child-case' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 1: Child Details</button></a></li>
+            <li>
+                <a href="{% url 'cc_child_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 2: Development Of Child History</button></a>
+            </li>
+            <li>
+                <button style="margin-bottom: 8px" href={% url 'receptionist' %} type="button" class="btn-fill-lmd radius-30 text-light bg-true-v">Step 3: Birth Period</button>
+            </li>
+            <li>
+                <a href="{% url 'cc_stages_of_growth' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 4: Stages Of Growth</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_family_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 5: Family History</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_social_development' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 6: Social/Personal Development</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_child-behaviour' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 7: Child Behaviour</button></a>
+            </li>
+             <li>
+                 <a href="{% url 'cc_school_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 8: School History Info</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_difficulties' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 9: Difficulties Info</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_other_info' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 10: Other Info</button></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card ui-tab-card">
+        <div class="card-body">
+            <div class="heading-layout1 mg-b-25">
+                <div class="item-title">
+                    <h3>Did the child suffer from the following complications and problems?</h3>
+                </div>
+               <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">...</a>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                    </div>
+                </div>
+            </div>
+            <form class="new-added-form" method="POST">
+                {% csrf_token %}
+                <div class="table-responsive">
+                    <table class="table bs-table table-striped table-bordered text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Condition</th>
+                                <th>Age</th>
+                                <th>Duration/Recurrence</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Severe High Temperature</td>
+                                <td>{% render_field form.extremely_high_temp_age %}</td>
+                                <td>{% render_field form.extremely_high_temp_dur %}</td>
+                            </tr>
+                            <tr>
+                                <td>Auditory problems/Ears Infection</td>
+                                <td>{% render_field form.ear_problems_age %}</td>
+                                <td>{% render_field form.ear_problems_dur %}</td>
+                            </tr>
+                            <tr>
+                                <td>Vision Problems</td>
+                                <td>{% render_field form.vision_problems_age %}</td>
+                                <td>{% render_field form.vision_problems_dur %}</td>
+                            </tr>
+                            <tr>
+                                <td>Juandice/Yellow Skin</td>
+                                <td>{% render_field form.juandice_age %}</td>
+                                <td>{% render_field form.juandice_dur %}</td>
+                            </tr>
+                            <tr>
+                                <td>Asthma</td>
+                                <td>{% render_field form.asthma_age %}</td>
+                                <td>{% render_field form.asthma_dur %}</td>
+                            </tr>
+                            <tr>
+                                <td>Allergy</td>
+                                <td>{% render_field form.allergy_age %}</td>
+                                <td>{% render_field form.allergy_dur %}</td>
+                            </tr>
+                            <tr>
+                                <td>Poisoning</td>
+                                <td>{% render_field form.poisoning_age %}</td>
+                                <td>{% render_field form.poisoning_dur %}</td>
+                            </tr>
+                            <tr>
+                                <td>Surgical Intervention</td>
+                                <td>{% render_field form.surgical_age %}</td>
+                                <td>{% render_field form.surgical_dur %}</td>
+                            </tr>
+                            <tr>
+                                <td>In case there was, please mention the surgery</td>
+                                <td>{% render_field form.surgery %}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Accidents</td>
+                                <td>{% render_field form.accident_age %}</td>
+                                <td>{% render_field form.accident_dur %}</td>
+                            </tr>
+                            <tr>
+                                <td>In case there was, please mention the type Accidents</td>
+                                <td>{% render_field form.accident %}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Does the child suffer from diseases or have health issues not mentioned?</td>
+                                <td>{% render_field form.not_mentioned_disease %}</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-12 form-group mg-t-8" style="width: 100px">
+                        <a href={% url 'cc_child_history' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Previous</button></a>
+                        <a href={% url 'cc_stages_of_growth' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Next</button></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

@@ -212,3 +212,67 @@ class Appointment(models.Model):
 
     def __str__(self):
         return self.child.first_name
+
+
+class Child_Case_Data(models.Model):
+    # Child Details
+    civil_number = models.IntegerField(null=True, blank=True)
+    school_name = models.CharField(max_length=200)
+    dob = models.DateField()
+    place_of_birth = models.CharField(max_length=200)
+    nationality = models.CharField(max_length=200)
+    grade = models.CharField(max_length=200)
+    gender = models.CharField(max_length=200)
+
+    # Father Details
+    f_name = models.CharField(max_length=200)
+    f_age = models.IntegerField(null=True, blank=True)
+    f_nationality = models.CharField(max_length=200, null=True, blank=True)
+    f_phone = models.IntegerField()
+    f_education_level = models.CharField(max_length=200, null=True, blank=True)
+    f_occupation = models.CharField(max_length=200, null=True, blank=True)
+    f_address = models.CharField(max_length=300)
+    f_email = models.EmailField()
+
+    # Mother Details
+    m_name = models.CharField(max_length=200, null=True, blank=True)
+    m_age = models.IntegerField(null=True, blank=True)
+    m_nationality = models.CharField(max_length=200, null=True, blank=True)
+    m_phone = models.IntegerField(null=True, blank=True)
+    m_education_level = models.CharField(max_length=200, null=True, blank=True)
+    m_occupation = models.CharField(max_length=200, null=True, blank=True)
+    m_address = models.CharField(max_length=300, null=True, blank=True)
+    m_email = models.EmailField(null=True, blank=True)
+
+    # Guardian Details
+    g_name = models.CharField(max_length=200, null=True, blank=True)
+    g_education_level = models.CharField(max_length=200, null=True, blank=True)
+    g_relation_child = models.CharField(max_length=200, null=True, blank=True)
+    g_phone = models.IntegerField(null=True, blank=True)
+    g_occupation = models.CharField(max_length=200, null=True, blank=True)
+    g_address = models.CharField(max_length=300, null=True, blank=True)
+    g_email = models.EmailField(null=True, blank=True)
+
+    # family
+    relation_btw_parents = models.CharField(max_length=200, null=True, blank=True)
+    martial_status = models.CharField(max_length=200, null=True, blank=True)
+    passed_away = models.CharField(max_length=200, null=True, blank=True)
+    living_in_case = models.CharField(max_length=200, null=True, blank=True)
+    father_married = models.CharField(max_length=200, null=True, blank=True)
+    mother_married = models.CharField(max_length=200, null=True, blank=True)
+    married_when = models.CharField(max_length=200, null=True, blank=True)
+    second_marriage = models.CharField(max_length=200, null=True, blank=True)
+    nationality_sec_m = models.CharField(max_length=200, null=True, blank=True)
+    number_of_fam = models.IntegerField(null=True, blank=True)
+    number_of_bros = models.IntegerField(null=True, blank=True)
+    number_of_sis = models.IntegerField(null=True, blank=True)
+    number_of_bros_f = models.IntegerField(null=True, blank=True)
+    number_of_sis_f = models.IntegerField(null=True, blank=True)
+    number_of_bros_m = models.IntegerField(null=True, blank=True)
+    number_of_sis_m = models.IntegerField(null=True, blank=True)
+    order_sib = models.IntegerField(null=True, blank=True)
+    other_people_house = models.CharField(max_length=200, null=True, blank=True)
+    lives_current = models.CharField(max_length=200, null=True, blank=True)
+
+
+

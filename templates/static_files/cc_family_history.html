@@ -1,0 +1,153 @@
+{% extends 'static_files/dashboard_receptionist.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block cc_family_history %}
+
+    <div class="breadcrumbs-area">
+        <h3>Child Case Form</h3>
+        <br>
+        <ul>
+            <li><a href="{% url 'child-case' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 1: Child Details</button></a></li>
+            <li>
+                <a href="{% url 'cc_child_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 2: Development Of Child History</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_condition' obj.child.username %}"><button style="margin-bottom: 8px"  type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 3: Birth Period</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_stages_of_growth' obj.child.username %}"><button style="margin-bottom: 8px"  type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 4: Stages Of Growth</button></a>
+            </li>
+            <li>
+                <button style="margin-bottom: 8px" type="button" class="btn-fill-lmd radius-30 text-light bg-true-v">Step 5: Family History</button>
+            </li>
+            <li>
+                <a href="{% url 'cc_social_development' obj.child.username %}"><button style="margin-bottom: 8px"  type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 6: Social/Personal Development</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_child-behaviour' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 7: Child Behaviour</button></a>
+            </li>
+             <li>
+                 <a href="{% url 'cc_school_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 8: School History Info</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_difficulties' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 9: Difficulties Info</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_other_info' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 10: Other Info</button></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card ui-tab-card">
+        <div class="card-body">
+            <div class="heading-layout1 mg-b-25">
+                <div class="item-title">
+                    <h3>Specify if one of the family members suffers from the following problems:</h3>
+                </div>
+               <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">...</a>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                    </div>
+                </div>
+            </div>
+            <form class="new-added-form" method="POST">
+                {% csrf_token %}
+                <div class="table-responsive">
+                    <table class="table bs-table table-striped table-bordered text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Problems</th>
+                                <th>Family Members</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Hyperactivity</td>
+                                <td>{% render_field form.hyperinactivity style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                            </tr>
+                            <tr>
+                                <td>Reading Difficulty</td>
+                                <td>{% render_field form.reading style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                            </tr>
+                            <tr>
+                                <td>Writing and Dictating Difficulty</td>
+                                <td>{% render_field form.writing_dictating style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                            </tr>
+                            <tr>
+                                <td>Difficulty in calculating</td>
+                                <td>{% render_field form.calculating style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                            </tr>
+                            <tr>
+                                <td>Concentration and attention Difficulty</td>
+                                <td>{% render_field form.concentration style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                            </tr>
+                            <tr>
+                                <td>Difficulty in Pronouncing</td>
+                                <td>{% render_field form.pronouncing style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                            </tr>
+                            <tr>
+                                <td>Impaired Hearing</td>
+                                <td>{% render_field form.hearing style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                            </tr>
+                            <tr>
+                                <td>Visual Impairment</td>
+                                <td>{% render_field form.visual style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                            </tr>
+                            <tr>
+                                <td>Impaired Mobility</td>
+                                <td>{% render_field form.mobility style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                            </tr>
+                            <tr>
+                                <td>Intellectual Disability</td>
+                                <td>{% render_field form.intellectual style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                            </tr>
+                            <tr>
+                                <td>Down Syndrome</td>
+                                <td>{% render_field form.down_syndrome style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                            </tr>
+                            <tr>
+                                <td>Autism</td>
+                                <td>{% render_field form.autism style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xl-7 col-lg-9 col-12 form-group">
+                        <label>Other problems not mentioned, specifying family members</label>
+                        {% render_field form.other_problems class="textarea form-control" cols="10" rows="2" %}
+                    </div>
+                    <div class="col-xl-5 col-lg-5 col-12 form-group">
+                        <label>Problem of the child hereditary?</label>
+                        <select class="select2" name="child_hereditary">
+                            <option value="">Please Select Option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-6 col-lg-7 col-12 form-group">
+                        <label>Age of child when the problem was discovered</label>
+                        {% render_field form.age_discovered class="form-control" %}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-12 form-group">
+                        <label>How is the problem affecting the child?</label>
+                        {% render_field form.effecting_child class="form-control" %}
+                    </div>
+                    <div class="col-12 form-group mg-t-8" style="width: 100px">
+                        <a href={% url 'cc_stages_of_growth' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Previous</button></a>
+                        <a href={% url 'cc_social_development' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Next</button></a>
+                    </div>
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

@@ -2,16 +2,17 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Person, Role, Hosted_Centres, Appointment, Availability, Slot
 from django.contrib import messages
-from .forms import login_form, register_form, register_centre_form, add_appointment_form
+from .forms import login_form, register_form, register_centre_form, add_appointment_form, child_case_form
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate
 from django.utils import timezone
 import datetime
 
-
 # Create your views here.
 
 current_time = timezone.now() + timezone.timedelta(hours=5)
+
+
 # def home(request):
 #     super = Person.objects.get(is_superuser=True)
 #     if request.user.email != super.email:
@@ -170,6 +171,7 @@ def receptionist_dashboard(request):
 
 def appointment_list(request):
     appoin_list = Appointment.objects.all()
+    delete_old_slots(current_time.date())
     if request.method == "POST":
         s_by_name = request.POST['s_by_name']
         p_by_name = request.POST['p_by_name']
@@ -240,13 +242,15 @@ def check_slots(request, id1, id2, date):
     child = Person.objects.get(id=id2)
     slotss = Slot.objects.filter(psychologist_id=id1, day=date)
     x = current_time + timezone.timedelta(hours=2)
+    # print(x.time())
     two_hours = int(str(x.time()).split(':')[0])
     if slotss:
         slotss = Slot.objects.filter(psychologist_id=id1, day=date, available=True)
-        if current_time.date() == date:
+        if str(current_time.date()) == str(date):
             for slot in slotss:
                 slot_time = int(str(slot.s_time).split(':')[0])
-                if slot_time < two_hours:
+                print(slot_time, two_hours)
+                if slot_time < two_hours or two_hours == 0 or two_hours == 1:
                     slotss = slotss.exclude(id=slot.id)
     else:
         d = date.split('-')
@@ -390,7 +394,8 @@ def confirm_appointment(request, id1, id2, date, time_s, time_e):
     if request.method == "POST":
         count = Appointment.objects.filter(child_id=id2).count()
         if count == 0:
-            Appointment.objects.create(psychologist_id=id1, child_id=id2, appointment_date=date, appointment_s_time=time_s,
+            Appointment.objects.create(psychologist_id=id1, child_id=id2, appointment_date=date,
+                                       appointment_s_time=time_s,
                                        appointment_e_time=time_e, status=True)
             slot = Slot.objects.get(psychologist_id=id1, day=date, s_time=time_s, e_time=time_e)
             if slot.available == False:
@@ -431,7 +436,7 @@ def delete_appointment(request, id):
     appoin = Appointment.objects.get(id=id)
     psy = Person.objects.get(id=appoin.psychologist_id)
     slot = Slot.objects.get(psychologist_id=psy.id, day=appoin.appointment_date, s_time=appoin.appointment_s_time,
-                             e_time=appoin.appointment_e_time)
+                            e_time=appoin.appointment_e_time)
     slot.available = True
     slot.save()
     appoin.delete()
@@ -462,3 +467,65 @@ def rescheudle(request, id):
         return redirect(check_slots, psy.id, appoin.child.id, datee.date())
 
     return render(request, 'static_files/reshedule.html', {'appointment': appoin, 'psy': psy})
+
+
+def child_case(request, child_name):
+    appoin = Appointment.objects.get(child__username=child_name)
+    child_form = child_case_form()
+    return render(request, 'static_files/child-case.html', {'obj': appoin, 'form': child_form})
+
+
+def cc_child_history(request, child_name):
+    # child_first_name = child_name.split(' ')[0]
+    appoin = Appointment.objects.get(child__username=child_name)
+    child_form = child_case_form()
+    return render(request, 'static_files/cc_development_of_child.html', {'obj': appoin, 'form': child_form})
+
+
+def cc_condition(request, child_name):
+    # child_first_name = child_name.split(' ')[0]
+    appoin = Appointment.objects.get(child__username=child_name)
+    child_form = child_case_form()
+    return render(request, 'static_files/cc_condition.html', {'obj': appoin, 'form': child_form})
+
+
+def cc_stages_of_growth(request, child_name):
+    appoin = Appointment.objects.get(child__username=child_name)
+    child_form = child_case_form()
+    return render(request, 'static_files/cc_stages_of_growth.html', {'obj': appoin, 'form': child_form})
+
+
+def cc_family_history(request, child_name):
+    appoin = Appointment.objects.get(child__username=child_name)
+    child_form = child_case_form()
+    return render(request, 'static_files/cc_family_history.html', {'obj': appoin, 'form': child_form})
+
+
+def cc_social_development(request, child_name):
+    appoin = Appointment.objects.get(child__username=child_name)
+    child_form = child_case_form()
+    return render(request, 'static_files/cc-social-development.html', {'obj': appoin, 'form': child_form})
+
+
+def cc_child_beh(request, child_name):
+    appoin = Appointment.objects.get(child__username=child_name)
+    child_form = child_case_form()
+    return render(request, 'static_files/cc_child_beh.html', {'obj': appoin, 'form': child_form})
+
+
+def cc_school_history(request, child_name):
+    appoin = Appointment.objects.get(child__username=child_name)
+    child_form = child_case_form()
+    return render(request, 'static_files/cc_school_history.html', {'obj': appoin, 'form': child_form})
+
+
+def cc_diff_info(request, child_name):
+    appoin = Appointment.objects.get(child__username=child_name)
+    child_form = child_case_form()
+    return render(request, 'static_files/cc_diff_info.html', {'obj': appoin, 'form': child_form})
+
+
+def cc_other_info(request, child_name):
+    appoin = Appointment.objects.get(child__username=child_name)
+    child_form = child_case_form()
+    return render(request, 'static_files/cc_other_info.html', {'obj': appoin, 'form': child_form})

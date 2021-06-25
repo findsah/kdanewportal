@@ -54,6 +54,7 @@
                         <th>Teacher/Psychologist Name</th>
                         <th>Appointment Date and Time</th>
                         <th>Status</th>
+                        <th>Child Case Form</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -69,6 +70,9 @@
                                 {% elif obj.status == False %}
                                     Not Approved
                                 {% endif %}
+                            </td>
+                            <td>
+                                <a href={% url 'child-case' obj.child.username %}><button type="button" class="fw-btn-fill btn-gradient-yellow">Add a form</button></a>
                             </td>
                             <td>
                                 <div class="dropdown">

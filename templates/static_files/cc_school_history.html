@@ -1,0 +1,197 @@
+{% extends 'static_files/dashboard_receptionist.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block cc_school_history %}
+
+    <div class="breadcrumbs-area">
+        <h3>Child Case Form</h3>
+        <br>
+        <ul>
+            <li><a href="{% url 'child-case' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 1: Child Details</button></a></li>
+            <li>
+                <a href="{% url 'cc_child_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 2: Development Of Child History</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_condition' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 3: Birth Period</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_stages_of_growth' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 4: Stages Of Growth</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_family_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 5: Family History</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_social_development' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 6: Social/Personal Development</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_child-behaviour' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 7: Child Behaviour</button></a>
+            </li>
+            <li>
+                <button style="margin-bottom: 8px" type="button" class="btn-fill-lmd radius-30 text-light bg-true-v">Step 8: School History Info</button>
+            </li>
+            <li>
+                <a href="{% url 'cc_difficulties' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 9: Difficulties Info</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_other_info' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 10: Other Info</button></a>
+            </li>
+        </ul>
+    </div>
+    <div class="card ui-tab-card">
+        <div class="card-body">
+            <div class="heading-layout1 mg-b-25">
+                <div class="item-title">
+                    <h3>School Life History</h3>
+                </div>
+               <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">...</a>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                    </div>
+                </div>
+            </div>
+            <form class="new-added-form" method="POST">
+                {% csrf_token %}
+                <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                    <div class="row">
+                        <div class="col-12 form-group mg-t-8" style="width: 100px">
+                            <p style="padding-top: 13px"><strong>Names of the Schools in which Child was enrolled in:</strong></p>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table bs-table table-striped table-bordered text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>School Name</th>
+                                    <th>Enrollment Date</th>
+                                    <th>Child's Attitude towards School</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{% render_field form.s_name_1 style="width:240px"%}</td>
+                                    <td>{% render_field form.s_enroll_1 type='text' class="air-datepicker" data-position='bottom left'%}</td>
+                                    <td>{% render_field form.s_beh_1 style="width:240px"%}</td>
+                                </tr>
+                                <tr>
+                                    <td>{% render_field form.s_name_2 style="width:240px"%}</td>
+                                    <td>{% render_field form.s_enroll_2 type='text' class="air-datepicker" data-position='bottom left'%}</td>
+                                    <td>{% render_field form.s_beh_2 style="width:240px"%}</td>
+                                </tr>
+                                <tr>
+                                    <td>{% render_field form.s_name_3 style="width:240px"%}</td>
+                                    <td>{% render_field form.s_enroll_3 type='text' class="air-datepicker" data-position='bottom left'%}</td>
+                                    <td>{% render_field form.s_beh_3 style="width:240px"%}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>First Stage of Child's Education?</label>
+                            {% render_field form.first_stage class="form-control" %}
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Child Failed in One of the stages</label>
+                            <select class="select2" name="stages_failed">
+                                <option value="">Please Select Option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Failure Class(If any)</label>
+                            {% render_field form.failure_class class="form-control" %}
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Failure Subjects(If any)</label>
+                            {% render_field form.failure_subjs class="form-control" %}
+                        </div>
+                        <div class="col-xl-5 col-lg-6 col-12 form-group">
+                            <label>Used Private Tutors/Special Centres?</label>
+                            <select class="select2" name="private_tutors">
+                                <option value="">Please Select Option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-6 col-lg-12 col-12 form-group">
+                            <label>How to take advantage of these for the help of</label>
+                            {% render_field form.advantage class="form-control" %}
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Had difficult teaching the Child</label>
+                            <select class="select2" name="diff_teaching">
+                                <option value="">Please Select Option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Teachers Note on the Case</label>
+                            {% render_field form.teachers_note class="form-control" %}
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-12 form-group">
+                            <label>Case needs supervision during teaching</label>
+                            <select class="select2" name="supervision_teaching">
+                                <option value="">Please Select Option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-5 col-lg-6 col-12 form-group">
+                            <label>Current Academic achievement level</label>
+                            {% render_field form.achievement class="form-control" %}
+                        </div>
+                        <div class="col-12 form-group mg-t-8" style="width: 100px">
+                            <p style="padding-top: 13px"><strong>Comment on the Behaviour of the Child with respect to:</strong></p>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-12 form-group">
+                            <label>His Motivation To Learn</label>
+                            {% render_field form.motivation class="form-control" %}
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-12 form-group">
+                            <label>Enthusiasm level (for Homework)</label>
+                            {% render_field form.enthusiasm class="form-control" %}
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-12 form-group">
+                            <label>Time Punctuality</label>
+                            {% render_field form.time_punctuality class="form-control" %}
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-12 form-group">
+                            <label>Favourite articles</label>
+                            {% render_field form.fav_articles class="form-control" %}
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-12 form-group">
+                            <label>Least Preferred material</label>
+                            {% render_field form.least_fav_material class="form-control" %}
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-12 form-group">
+                            <label>Relationship with Teachers</label>
+                            {% render_field form.rel_teachers class="form-control" %}
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-12 form-group">
+                            <label>Desire to go to School</label>
+                            {% render_field form.desire_school class="form-control" %}
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-12 form-group">
+                            <label>Reason for being absent (If any)</label>
+                            {% render_field form.motivation class="form-control" %}
+                        </div>
+
+                        <div class="col-12 form-group mg-t-8" style="width: 100px">
+                            <a href={% url 'cc_child-behaviour' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Previous</button></a>
+                            <a href={% url 'cc_difficulties' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Next</button></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

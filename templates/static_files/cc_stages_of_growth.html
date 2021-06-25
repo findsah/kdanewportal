@@ -1,0 +1,292 @@
+{% extends 'static_files/dashboard_receptionist.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block cc_stages_of_growth %}
+
+    <div class="breadcrumbs-area">
+        <h3>Child Case Form</h3>
+        <br>
+        <ul>
+            <li><a href="{% url 'child-case' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 1: Child Details</button></a></li>
+            <li>
+                <a href="{% url 'cc_child_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 2: Development Of Child History</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_condition' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 3: Birth Period</button></a>
+            </li>
+            <li>
+                <button style="margin-bottom: 8px" href={% url 'receptionist' %} type="button" class="btn-fill-lmd radius-30 text-light bg-true-v">Step 4: Stages Of Growth</button>
+            </li>
+            <li>
+                <a href="{% url 'cc_family_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 5: Family History</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_social_development' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 6: Social/Personal Development</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_child-behaviour' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 7: Child Behaviour</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_school_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 8: School History Info</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_difficulties' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 9: Difficulties Info</button></a>
+            </li>
+            <li>
+                <a href="{% url 'cc_other_info' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 10: Other Info</button></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card ui-tab-card">
+        <div class="card-body">
+            <div class="heading-layout1 mg-b-25">
+                <div class="item-title">
+                    <h3>Stages Of Growth</h3>
+                </div>
+               <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">...</a>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                    </div>
+                </div>
+            </div>
+            <form class="new-added-form" method="POST">
+                {% csrf_token %}
+                <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                    <div class="row">
+                        <div class="col-12 form-group mg-t-8" style="width: 100px">
+                            <p style="padding-top: 13px"><strong>Write age of first occurrence of following</strong></p>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <label>Breastfeeding</label>
+                            <select class="select2" name="breastfeeding">
+                                <option value="">Please Select Option</option>
+                                <option value="natural">Natural</option>
+                                <option value="industrial">Industrial</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <label>Age of Weaning</label>
+                            {% render_field form.weaning_age class="form-control" %}
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <label>Age of Teething</label>
+                            {% render_field form.age_tooth_start class="form-control" %}
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <label>Age of Commune</label>
+                            {% render_field form.age_commune class="form-control" %}
+                        </div>
+                        <div class="col-xl-6 col-lg-8 col-12 form-group">
+                            <label>Age of Pronouncing Simple Words (Papa, Mama)</label>
+                            {% render_field form.age_simple_words class="form-control" %}
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Age of Speech</label>
+                            {% render_field form.age_speech class="form-control" %}
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Age of Use of Full Sentence</label>
+                            {% render_field form.age_sentence class="form-control" %}
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Age of carrying bottle of milk alone</label>
+                            {% render_field form.age_bottle_carry class="form-control" %}
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Age at which Love began</label>
+                            {% render_field form.age_love class="form-control" %}
+                        </div>
+                        <div class="col-xl-5 col-lg-6 col-12 form-group">
+                            <label>Age at which the child sat without help</label>
+                            {% render_field form.age_sat class="form-control" %}
+                        </div>
+                        <div class="col-xl-5 col-lg-6 col-12 form-group">
+                            <label>Age at which the child stop without help</label>
+                            {% render_field form.age_stop class="form-control" %}
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <label>Age of walking alone</label>
+                            {% render_field form.age_walk class="form-control" %}
+                        </div>
+                        <div class="col-xl-5 col-lg-6 col-12 form-group">
+                            <label>Age of wearing clothes with help</label>
+                            {% render_field form.age_wore_help class="form-control" %}
+                        </div>
+                        <div class="col-xl-6 col-lg-8 col-12 form-group">
+                            <label>Age of wearing and taking off of clothes without help</label>
+                            {% render_field form.age_wore_self class="form-control" %}
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <label>Age of wearing shoes</label>
+                            {% render_field form.age_shoes class="form-control" %}
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <label>Age of feeding himself</label>
+                            {% render_field form.age_feed class="form-control" %}
+                        </div>
+                        <div class="col-xl-6 col-lg-8 col-12 form-group">
+                            <label>Age of adjusting output and urination functions</label>
+                            {% render_field form.age_urination class="form-control" %}
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Age of using bathroom well</label>
+                            {% render_field form.age_bathroom_train class="form-control" %}
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Has Visual Problems?</label>
+                            <select class="select2" name="visual_probs">
+                                <option value="">Please Select Option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Use Glasses?</label>
+                            <select class="select2" name="breastfeeding">
+                                <option value="">Please Select Option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Age of Glasses, if yes</label>
+                            {% render_field form.age_glasses class="form-control" %}
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Has Hearing Problems?</label>
+                            <select class="select2" name="hearing_probs">
+                                <option value="">Please Select Option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Uses Hearing Aid?</label>
+                            <select class="select2" name="hearing_aid">
+                                <option value="">Please Select Option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Age of hearing aid, if yes</label>
+                            {% render_field form.age_hearing_aid class="form-control" %}
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Difficulty speaking?</label>
+                            <select class="select2" name="speaking_difficulty">
+                                <option value="">Please Select Option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Treated at speach centres?</label>
+                            <select class="select2" name="treated_speech_centres">
+                                <option value="">Please Select Option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Age of treated at speech centre?</label>
+                            {% render_field form.age_speech_centre class="form-control" %}
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Hand of writing/drawing</label>
+                            <select class="select2" name="hand">
+                                <option value="">Please Select Option</option>
+                                <option value="right">Right</option>
+                                <option value="left">Left</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Leg for kicking the ball</label>
+                            <select class="select2" name="leg">
+                                <option value="">Please Select Option</option>
+                                <option value="right">Right</option>
+                                <option value="left">Left</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Both hands use?</label>
+                            <select class="select2" name="both_hand">
+                                <option value="">Please Select Option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Attempt to stop using left hand?</label>
+                            <select class="select2" name="stop_left_hand">
+                                <option value="">Please Select Option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Age of stop using left hand?</label>
+                            {% render_field form.age_stop_left_hand class="form-control" %}
+                        </div>
+                        <div class="col-xl-5 col-lg-6 col-12 form-group">
+                            <label>Suffering from involuntary urination?</label>
+                            <select class="select2" name="involuntary_urination">
+                                <option value="">Please Select Option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Cause of involuntary urination?</label>
+                            <select class="select2" name="cause_involuntary_urination">
+                                <option value="">Please Select Option</option>
+                                <option value="psychological">Psychological</option>
+                                <option value="organic">Organic</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Age of Involuntary urination(If any)</label>
+                            {% render_field form.age_stop_left_hand class="form-control" %}
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Taking any medicines?</label>
+                            <select class="select2" name="medicines_bool">
+                                <option value="">Please Select Option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Medicine Name</label>
+                            {% render_field form.medicine_name class="form-control" %}
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Medicine Use Reason</label>
+                            {% render_field form.medicine_reason class="form-control" %}
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Appetite/Eating habits</label>
+                            {% render_field form.appetite class="form-control" %}
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-12 form-group">
+                            <label>Favourite food</label>
+                            {% render_field form.fav_food class="form-control" %}
+                        </div>
+                        <div class="col-12 form-group mg-t-8" style="width: 100px">
+                            <a href={% url 'cc_condition' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Previous</button></a>
+                            <a href={% url 'cc_family_history' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Next</button></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
