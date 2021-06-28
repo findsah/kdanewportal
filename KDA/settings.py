@@ -11,11 +11,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
+
 # import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -27,7 +27,6 @@ SECRET_KEY = 'django-insecure-u*3q(vdq$i6q9^cq_wu_$0f7nccv##x)ew!kpx^5ee828v7al9
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -74,7 +73,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'KDA.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -113,7 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -126,7 +123,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -157,3 +153,11 @@ STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 # STATIC_ROOT = os.path.join(BASE_DIR, '../templates/')
 STATICFILES_DIRS = ["C:/Users/DELL/PycharmProjects/KDA/templates"]
 DEFAULT_FILE_STORAGE = 'KDA.storage_backends.MediaStorage'  # <-- here is where we reference i
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_USES = True
+EMAIL_HOST = 'smtp.office365.com'
+EMAIL_HOST_USER = 'info@q8da.com'
+EMAIL_HOST_PASSWORD = '1Q2w3e4r@'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

@@ -27,6 +27,6 @@ urlpatterns = [
     path('cc-child-behaviour/<str:child_name>/', views.cc_child_beh, name='cc_child-behaviour'),
     path('cc-school-history/<str:child_name>/', views.cc_school_history, name='cc_school_history'),
     path('cc-difficulties/<str:child_name>/', views.cc_diff_info, name='cc_difficulties'),
-    path('cc-other-info/<str:child_name>/', views.cc_other_info, name='cc_other_info')
-
+    path('cc-other-info/<str:child_name>/', views.cc_other_info, name='cc_other_info'),
+    path('send_link/<int:id>/', views.send_link_form, name='send_link')
 ]

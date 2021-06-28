@@ -7,6 +7,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate
 from django.utils import timezone
 import datetime
+from django.core.mail import send_mail
+
 
 # Create your views here.
 
@@ -435,6 +437,8 @@ def confirm_appointment(request, id1, id2, date, time_s, time_e):
 def delete_appointment(request, id):
     appoin = Appointment.objects.get(id=id)
     psy = Person.objects.get(id=appoin.psychologist_id)
+    form = Child_Case_Data.objects.get(child=appoin.child)
+    form.delete()
     slot = Slot.objects.get(psychologist_id=psy.id, day=appoin.appointment_date, s_time=appoin.appointment_s_time,
                             e_time=appoin.appointment_e_time)
     slot.available = True
@@ -1483,3 +1487,14 @@ def cc_other_info(request, child_name):
         cc = Child_Case_Data.objects.get(child__username=child_name)
         cc.date_last_assessment = format_date_html(cc.date_last_assessment)
     return render(request, 'static_files/cc_other_info.html', {'obj': appoin, 'form': child_form, 'cc': cc})
+
+
+def send_link_form(request, id):
+    child_username = Appointment.objects.get(id=id).child.username
+
+    form_link = f'http://localhost:8015/child-case-form/{child_username}/'
+    message = "Please follow the following link to fill the Child Case Form for your appointment: " + form_link
+    send_mail('From KDA', message, "info@q8da.com", ['hamza.zaid29@yahoo.com'], fail_silently=False)
+    messages.success(request, message="Email sent.")
+
+    return redirect(appointment_list)

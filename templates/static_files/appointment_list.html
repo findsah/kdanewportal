@@ -55,6 +55,7 @@
                         <th>Appointment Date and Time</th>
                         <th>Status</th>
                         <th>Child Case Form</th>
+                        <th>Link</th>
                         <th>Delete</th>
                         <th>Reschedule</th>
                         <th></th>
@@ -81,6 +82,9 @@
                                 {% endif %}
                             </td>
                             <td>
+                                <a href={% url 'send_link' obj.id %}><button type="button" class="fw-btn-fill btn-gradient-yellow">Send Link</button></a>
+                            </td>
+                            <td>
                                 <button type="button" class="fw-btn-fill btn-gradient-yellow" data-bs-toggle="modal" data-bs-target="#confirmation-modal">
                                     Delete
                                 </button>
@@ -102,23 +106,25 @@
                             </td>
                         </tr>
 
-                        <div class="modal-box">
-                            <div class="modal fade" id="confirmation-modal" tabindex="-1" role="dialog" aria-hidden="true">
-                                <div class="modal-dialog success-modal-content" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="success-message">
-                                                <h3 class="item-title">You want to delete this Appointment ?</h3>
+                        <div class="ui-modal-box">
+                            <div class="modal-box">
+                                <div class="modal fade" id="confirmation-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog success-modal-content" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <a href={% url 'delete-appointment' obj.id %}><button type="button" class="footer-btn bg-linkedin">Ok</button></a>
-                                            <button type="button" class="footer-btn bg-dark-low" data-bs-dismiss="modal">Cancel</button>
+                                            <div class="modal-body">
+                                                <div class="success-message">
+                                                    <h3 class="item-title">You want to delete this Appointment?</h3>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href={% url 'delete-appointment' obj.id %}><button type="button" class="footer-btn bg-linkedin">Ok</button></a>
+                                                <button type="button" class="footer-btn bg-dark-low" data-bs-dismiss="modal">Cancel</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
