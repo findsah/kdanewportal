@@ -72,7 +72,11 @@
                                 {% endif %}
                             </td>
                             <td>
-                                <a href={% url 'child-case' obj.child.username %}><button type="button" class="fw-btn-fill btn-gradient-yellow">Add a form</button></a>
+                                {% if obj.child.child_form %}
+                                    <a href={% url 'child-case' obj.child.username %}><button type="button" class="fw-btn-fill btn-gradient-yellow">Edit Your Form</button></a>
+                                    {% else %}
+                                    <a href={% url 'child-case' obj.child.username %}><button type="button" class="fw-btn-fill btn-gradient-yellow">Add a form</button></a>
+                                {% endif %}
                             </td>
                             <td>
                                 <div class="dropdown">

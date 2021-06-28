@@ -215,7 +215,7 @@ class Appointment(models.Model):
 
 
 class Child_Case_Data(models.Model):
-    child = models.ForeignKey(Person, on_delete=models.CASCADE)
+    child = models.ForeignKey(Person, on_delete=models.CASCADE, related_name="child_form")
 
     # Child Details
     civil_number = models.IntegerField(null=True, blank=True)
