@@ -385,7 +385,15 @@
                 {% if messages %}
                     <ul>
                         {% for message in messages %}
-                            <li style="text-align: center"><button type="button" class="btn-fill-lmd radius-30 text-light shadow-red bg-red">{{ message|safe }}</button></li>
+{#                            <li style="text-align: center"><button type="button" class="btn-fill-lmd radius-30 text-light shadow-red bg-red">{{ message|safe }}</button></li>#}
+                            <div class="ui-alart-box">
+                                <div class="icon-color-alart">
+                                    <div class="alert icon-alart bg-pink2" role="alert">
+                                        <i class="fas fa-times bg-pink3"></i>
+                                        {{ message|safe }}
+                                    </div>
+                                </div>
+                            </div>
                         {% endfor %}
                     </ul>
 

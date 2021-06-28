@@ -405,7 +405,7 @@ def confirm_appointment(request, id1, id2, date, time_s, time_e):
                 slot.available = False
                 slot.save()
                 messages.success(request, message="Appointment Added")
-                return redirect(add_appointment)
+                return redirect(appointment_list)
         else:
             appoint = Appointment.objects.get(child_id=id2)
             slot = Slot.objects.get(psychologist_id=appoint.psychologist.id, day=appoint.appointment_date,
