@@ -72,9 +72,9 @@
                                 {% endif %}
                             </td>
                             <td>
-                                {% if obj.child.child_form %}
+                                {% if obj.child.child_form.count %}
                                     <a href={% url 'child-case' obj.child.username %}><button type="button" class="fw-btn-fill btn-gradient-yellow">Edit Your Form</button></a>
-                                    {% else %}
+                                {% else %}
                                     <a href={% url 'child-case' obj.child.username %}><button type="button" class="fw-btn-fill btn-gradient-yellow">Add a form</button></a>
                                 {% endif %}
                             </td>
