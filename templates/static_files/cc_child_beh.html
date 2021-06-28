@@ -8,33 +8,33 @@
         <h3>Child Case Form</h3>
         <br>
         <ul>
-            <li><a href="{% url 'child-case' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 1: Child Details</button></a></li>
+            <li><a href="{% url 'child-case' obj.child.username %}"><button name="step1" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 1: Child Details</button></a></li>
             <li>
-                <a href="{% url 'cc_child_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 2: Development Of Child History</button></a>
+                <a href="{% url 'cc_child_history' obj.child.username %}"><button name="step2" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 2: Development Of Child History</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_condition' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 3: Birth Period</button></a>
+                <a href="{% url 'cc_condition' obj.child.username %}"><button name="step3" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 3: Birth Period</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_stages_of_growth' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 4: Stages Of Growth</button></a>
+                <a href="{% url 'cc_stages_of_growth' obj.child.username %}"><button name="step4" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 4: Stages Of Growth</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_family_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 5: Family History</button></a>
+                <a href="{% url 'cc_family_history' obj.child.username %}"><button name="step5" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 5: Family History</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_social_development' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 6: Social/Personal Development</button></a>
+                <a href="{% url 'cc_social_development' obj.child.username %}"><button name="step6" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 6: Social/Personal Development</button></a>
             </li>
             <li>
                 <button style="margin-bottom: 8px" type="button" class="btn-fill-lmd radius-30 text-light bg-true-v">Step 7: Child Behaviour</button>
             </li>
              <li>
-                 <a href="{% url 'cc_school_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 8: School History Info</button></a>
+                 <a href="{% url 'cc_school_history' obj.child.username %}"><button name="step8" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 8: School History Info</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_difficulties' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 9: Difficulties Info</button></a>
+                <a href="{% url 'cc_difficulties' obj.child.username %}"><button name="step9" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 9: Difficulties Info</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_other_info' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 10: Other Info</button></a>
+                <a href="{% url 'cc_other_info' obj.child.username %}"><button name="step10" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 10: Other Info</button></a>
             </li>
         </ul>
     </div>
@@ -64,13 +64,13 @@
                             <label>Child Suffers from Mental Illnesses</label>
                             <select class="select2" name="mental_illness">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.mental_illness_bool == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.mental_illness_bool == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Mental Illnesses (If any)</label>
-                            {% render_field form.mental_illnesses class="form-control" %}
+                            {% render_field form.mental_illnesses class="form-control" value=cc.mental_illness%}
                         </div>
                         <div class="col-12 form-group mg-t-8">
                         </div>
@@ -78,266 +78,266 @@
                             <label>Spends Most of the Time Alone</label>
                             <select class="select2" name="time_alone">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.spends_time_alone == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.spends_time_alone == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.spends_time_alone == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>No specific friends</label>
                             <select class="select2" name="specific_friend">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.no_friend == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.no_friend == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.no_friend == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Find Difficult to make friends</label>
                             <select class="select2" name="diff_friend">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.diff_friend == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.diff_friend == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.diff_friend == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Quarrels with friends</label>
                             <select class="select2" name="quarrel_friends">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.quarrels_friend == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.quarrels_friend == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.quarrels_friend == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Other children like to play with the child?</label>
                             <select class="select2" name="o_like_play">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.like_to_play == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.like_to_play == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.like_to_play == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Other children avoid to play with the child?</label>
                             <select class="select2" name="o_avoid_play">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.avoid_to_play == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.avoid_to_play == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.avoid_to_play == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Most of the friends older than the child?</label>
                             <select class="select2" name="f_older">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.older_friend == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.older_friend == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.older_friend == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Most of the friends younger than the child?</label>
-                            <select class="select2" name="diff_friend">
+                            <select class="select2" name="f_younger">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.younger_friend == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.younger_friend == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.younger_friend == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Seeks to attract attention</label>
                             <select class="select2" name="attention_seeker">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.seeker_attention == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.seeker_attention == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.seeker_attention == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Shows confidence in his ability?</label>
                             <select class="select2" name="confi_ability">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.confidence_ability == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.confidence_ability == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.confidence_ability == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Quite most of the time?</label>
                             <select class="select2" name="quite">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.quite == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.quite == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.quite == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Impulsive most of the time?</label>
                             <select class="select2" name="impulsive">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.impulsive == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.impulsive == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.impulsive == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Activity is normal?</label>
                             <select class="select2" name="activity_normal">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.normal_activity == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.normal_activity == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.normal_activity == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Cooperative with others?</label>
                             <select class="select2" name="cooperative">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.cooperative == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.cooperative == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.cooperative == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Mostly lies?</label>
                             <select class="select2" name="lies">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.lies == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.lies == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.lies == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Irritable or moody</label>
                             <select class="select2" name="moody">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.moody == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.moody == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.moody == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Gets bored quickly</label>
                             <select class="select2" name="bored">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.gets_bored == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.gets_bored == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.gets_bored == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Completes the assigned tasks</label>
                             <select class="select2" name="comp_tasks">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.completes_tasks == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.completes_tasks == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.completes_tasks == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Seems Unhappy/Sad/Depressed?</label>
                             <select class="select2" name="sad">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.sad == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.sad == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.sad == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Looks Cheerful/Upbeat</label>
                             <select class="select2" name="cheerful">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.cheerful == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.cheerful == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.cheerful == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Quite Aggressive behaviour?</label>
                             <select class="select2" name="aggressive">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.aggressive == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.aggressive == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.aggressive == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Avoids competition with others</label>
                             <select class="select2" name="avoid_competition">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.avoid_competition == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.avoid_competition == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.avoid_competition == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Tends to Compete with others</label>
                             <select class="select2" name="compete_others">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.compete_others == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.compete_others == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.compete_others == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Lazy/Indifferent</label>
                             <select class="select2" name="lazy">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.lazy == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.lazy == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.lazy == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Performs Leadership roles</label>
                             <select class="select2" name="leadership">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.leadership == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.leadership == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.leadership == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Self-Reliance/Autonomy</label>
                             <select class="select2" name="autonomy">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.self_reliance == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.self_reliance == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.self_reliance == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Takes long time in completing a task?</label>
                             <select class="select2" name="time_task">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.long_time_tasks == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.long_time_tasks == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.long_time_tasks == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Always seems Anxious</label>
                             <select class="select2" name="anxious">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.anxious == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.anxious == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.anxious == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Always seems Afraid</label>
                             <select class="select2" name="feel_afraid">
                                 <option value="">Please Select Option</option>
-                                <option value="not_true">Not True</option>
-                                <option value="rarely">Rarely/Sometimes</option>
-                                <option value="true">True</option>
+                                <option value="not_true" {% if cc.afraid == "not_true"%}selected="selected"{% endif %}>Not True</option>
+                                <option value="rarely" {% if cc.afraid == "rarely"%}selected="selected"{% endif %}>Rarely/Sometimes</option>
+                                <option value="true" {% if cc.afraid == "true"%}selected="selected"{% endif %}>True</option>
                             </select>
                         </div>
                         <div class="col-12 form-group mg-t-8" style="width: 100px">
-                            <a href={% url 'cc_social_development' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Previous</button></a>
-                            <a href={% url 'cc_school_history' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Next</button></a>
+                            <a href={% url 'cc_social_development' obj.child.username %}><button name="prev" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Previous</button></a>
+                            <a href={% url 'cc_school_history' obj.child.username %}><button name="next" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Next</button></a>
                         </div>
                     </div>
                 </div>

@@ -8,33 +8,33 @@
         <h3>Child Case Form</h3>
         <br>
         <ul>
-            <li><a href="{% url 'child-case' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 1: Child Details</button></a></li>
+            <li><a href="{% url 'child-case' obj.child.username %}"><button name="step1" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 1: Child Details</button></a></li>
             <li>
-                <a href="{% url 'cc_child_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 2: Development Of Child History</button></a>
+                <a href="{% url 'cc_child_history' obj.child.username %}"><button name="step2" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 2: Development Of Child History</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_condition' obj.child.username %}"><button style="margin-bottom: 8px"  type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 3: Birth Period</button></a>
+                <a href="{% url 'cc_condition' obj.child.username %}"><button name="step3" style="margin-bottom: 8px"  type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 3: Birth Period</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_stages_of_growth' obj.child.username %}"><button style="margin-bottom: 8px"  type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 4: Stages Of Growth</button></a>
+                <a href="{% url 'cc_stages_of_growth' obj.child.username %}"><button name="step4" style="margin-bottom: 8px"  type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 4: Stages Of Growth</button></a>
             </li>
             <li>
                 <button style="margin-bottom: 8px" type="button" class="btn-fill-lmd radius-30 text-light bg-true-v">Step 5: Family History</button>
             </li>
             <li>
-                <a href="{% url 'cc_social_development' obj.child.username %}"><button style="margin-bottom: 8px"  type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 6: Social/Personal Development</button></a>
+                <a href="{% url 'cc_social_development' obj.child.username %}"><button name="step6" style="margin-bottom: 8px"  type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 6: Social/Personal Development</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_child-behaviour' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 7: Child Behaviour</button></a>
+                <a href="{% url 'cc_child-behaviour' obj.child.username %}"><button name="step7" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 7: Child Behaviour</button></a>
             </li>
              <li>
-                 <a href="{% url 'cc_school_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 8: School History Info</button></a>
+                 <a href="{% url 'cc_school_history' obj.child.username %}"><button name="step8" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 8: School History Info</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_difficulties' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 9: Difficulties Info</button></a>
+                <a href="{% url 'cc_difficulties' obj.child.username %}"><button name="step9" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 9: Difficulties Info</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_other_info' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 10: Other Info</button></a>
+                <a href="{% url 'cc_other_info' obj.child.username %}"><button name="step10" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 10: Other Info</button></a>
             </li>
         </ul>
     </div>
@@ -69,51 +69,63 @@
                         <tbody>
                             <tr>
                                 <td>Hyperactivity</td>
-                                <td>{% render_field form.hyperinactivity style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+{#                                <td>{% render_field form.hyperinactivity style="width:570px" class="textarea" cols="10" rows="2" value="{{ cc.hyperinactivity }}"%}</td>#}
+                                <td><textarea name="hyperinactivity" class="textarea" style="width: 570px" cols="10" rows="2">{{ cc.hyperinactivity }}</textarea></td>
                             </tr>
                             <tr>
                                 <td>Reading Difficulty</td>
-                                <td>{% render_field form.reading style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+{#                                <td>{% render_field form.reading style="width:570px" class="textarea" cols="10" rows="2" value=cc.reading_diff%}</td>#}
+                                <td><textarea name="reading" class="textarea" style="width: 570px" cols="10" rows="2">{{ cc.reading_diff }}</textarea></td>
                             </tr>
                             <tr>
                                 <td>Writing and Dictating Difficulty</td>
-                                <td>{% render_field form.writing_dictating style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+{#                                <td>{% render_field form.writing_dictating style="width:570px" class="textarea" cols="10" rows="2" value=cc.writing_dictating_diff%}</td>#}
+                                <td><textarea name="writing_dictating" class="textarea" style="width: 570px" cols="10" rows="2">{{ cc.writing_dictating_diff }}</textarea></td>
                             </tr>
                             <tr>
                                 <td>Difficulty in calculating</td>
-                                <td>{% render_field form.calculating style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+{#                                <td>{% render_field form.calculating style="width:570px" class="textarea" cols="10" rows="2" value=cc.calculating_diff%}</td>#}
+                                <td><textarea name="calculating" class="textarea" style="width: 570px" cols="10" rows="2">{{ cc.calculating_diff }}</textarea></td>
                             </tr>
                             <tr>
                                 <td>Concentration and attention Difficulty</td>
-                                <td>{% render_field form.concentration style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                                <td><textarea name="concentration" class="textarea" style="width: 570px" cols="10" rows="2">{{ cc.concentration_diff }}</textarea></td>
+{#                                <td>{% render_field form.concentration style="width:570px" class="textarea" cols="10" rows="2" value=cc.concentration_diff%}</td>#}
                             </tr>
                             <tr>
                                 <td>Difficulty in Pronouncing</td>
-                                <td>{% render_field form.pronouncing style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                                <td><textarea name="pronouncing" class="textarea" style="width: 570px" cols="10" rows="2">{{ cc.pronouncing_diff }}</textarea></td>
+{#                                <td>{% render_field form.pronouncing style="width:570px" class="textarea" cols="10" rows="2" value=cc.pronouncing_diff%}</td>#}
                             </tr>
                             <tr>
                                 <td>Impaired Hearing</td>
-                                <td>{% render_field form.hearing style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                                <td><textarea name="hearing" class="textarea" style="width: 570px" cols="10" rows="2">{{ cc.impaired_hearing }}</textarea></td>
+{#                                <td>{% render_field form.hearing style="width:570px" class="textarea" cols="10" rows="2" value=cc.impaired_hearing%}</td>#}
                             </tr>
                             <tr>
                                 <td>Visual Impairment</td>
-                                <td>{% render_field form.visual style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                                <td><textarea name="visual" class="textarea" style="width: 570px" cols="10" rows="2">{{ cc.visual_impairment }}</textarea></td>
+{#                                <td>{% render_field form.visual style="width:570px" class="textarea" cols="10" rows="2" value=cc.visual_impairment%}</td>#}
                             </tr>
                             <tr>
                                 <td>Impaired Mobility</td>
-                                <td>{% render_field form.mobility style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                                <td><textarea name="mobility" class="textarea" style="width: 570px" cols="10" rows="2">{{ cc.impaired_mobility }}</textarea></td>
+{#                                <td>{% render_field form.mobility style="width:570px" class="textarea" cols="10" rows="2" value=cc.impaired_mobility%}</td>#}
                             </tr>
                             <tr>
                                 <td>Intellectual Disability</td>
-                                <td>{% render_field form.intellectual style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                                <td><textarea name="intellectual" class="textarea" style="width: 570px" cols="10" rows="2">{{ cc.intellectual_disability }}</textarea></td>
+{#                                <td>{% render_field form.intellectual style="width:570px" class="textarea" cols="10" rows="2" value=cc.intellectual_disability%}</td>#}
                             </tr>
                             <tr>
                                 <td>Down Syndrome</td>
-                                <td>{% render_field form.down_syndrome style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                                <td><textarea name="down_syndrome" class="textarea" style="width: 570px" cols="10" rows="2">{{ cc.down_syn }}</textarea></td>
+{#                                <td>{% render_field form.down_syndrome style="width:570px" class="textarea" cols="10" rows="2" value=cc.down_syn%}</td>#}
                             </tr>
                             <tr>
                                 <td>Autism</td>
-                                <td>{% render_field form.autism style="width:570px" class="textarea" cols="10" rows="2"%}</td>
+                                <td><textarea name="autism" class="textarea" style="width: 570px" cols="10" rows="2">{{ cc.autism }}</textarea></td>
+{#                                <td>{% render_field form.autism style="width:570px" class="textarea" cols="10" rows="2" value=cc.autism%}</td>#}
                             </tr>
                         </tbody>
                     </table>
@@ -122,27 +134,28 @@
                 <div class="row">
                     <div class="col-xl-7 col-lg-9 col-12 form-group">
                         <label>Other problems not mentioned, specifying family members</label>
-                        {% render_field form.other_problems class="textarea form-control" cols="10" rows="2" %}
+                        <td><textarea name="other_problems" class="textarea form-control" style="width: 570px" cols="10" rows="2">{{ cc.other_prob }}</textarea></td>
+{#                        {% render_field form.other_problems class="textarea form-control" cols="10" rows="2" value=cc.other_prob%}#}
                     </div>
                     <div class="col-xl-5 col-lg-5 col-12 form-group">
                         <label>Problem of the child hereditary?</label>
                         <select class="select2" name="child_hereditary">
                             <option value="">Please Select Option</option>
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
+                            <option value="yes" {% if cc.child_hereditary == "yes"%}selected="selected"{% endif %}>Yes</option>
+                            <option value="no" {% if cc.child_hereditary == "no"%}selected="selected"{% endif %}>No</option>
                         </select>
                     </div>
                     <div class="col-xl-6 col-lg-7 col-12 form-group">
                         <label>Age of child when the problem was discovered</label>
-                        {% render_field form.age_discovered class="form-control" %}
+                        {% render_field form.age_discovered class="form-control" value=cc.age_problem%}
                     </div>
                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                         <label>How is the problem affecting the child?</label>
-                        {% render_field form.effecting_child class="form-control" %}
+                        {% render_field form.effecting_child class="form-control" value=cc.prob_effect%}
                     </div>
                     <div class="col-12 form-group mg-t-8" style="width: 100px">
-                        <a href={% url 'cc_stages_of_growth' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Previous</button></a>
-                        <a href={% url 'cc_social_development' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Next</button></a>
+                        <a href={% url 'cc_stages_of_growth' obj.child.username %}><button name="prev" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Previous</button></a>
+                        <a href={% url 'cc_social_development' obj.child.username %}><button name="next" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Next</button></a>
                     </div>
                 </div>
                 <br>

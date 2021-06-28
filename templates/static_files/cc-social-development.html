@@ -8,33 +8,33 @@
         <h3>Child Case Form</h3>
         <br>
         <ul>
-            <li><a href="{% url 'child-case' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 1: Child Details</button></a></li>
+            <li><a href="{% url 'child-case' obj.child.username %}"><button name="step1" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 1: Child Details</button></a></li>
             <li>
-                <a href="{% url 'cc_child_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 2: Development Of Child History</button></a>
+                <a href="{% url 'cc_child_history' obj.child.username %}"><button name="step2" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 2: Development Of Child History</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_condition' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 3: Birth Period</button></a>
+                <a href="{% url 'cc_condition' obj.child.username %}"><button name="step3" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 3: Birth Period</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_stages_of_growth' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 4: Stages Of Growth</button></a>
+                <a href="{% url 'cc_stages_of_growth' obj.child.username %}"><button name="step4" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 4: Stages Of Growth</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_family_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 5: Family History</button></a>
+                <a href="{% url 'cc_family_history' obj.child.username %}"><button name="step5" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 5: Family History</button></a>
             </li>
             <li>
                 <button style="margin-bottom: 8px" type="button" class="btn-fill-lmd radius-30 text-light bg-true-v">Step 6: Social/Personal Development</button>
             </li>
             <li>
-                <a href="{% url 'cc_child-behaviour' obj.child.username %}"><button style="margin-bottom: 8px"  type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 7: Child Behaviour</button></a>
+                <a href="{% url 'cc_child-behaviour' obj.child.username %}"><button name="step7" style="margin-bottom: 8px"  type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 7: Child Behaviour</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_school_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 8: School History Info</button></a>
+                <a href="{% url 'cc_school_history' obj.child.username %}"><button name="step8" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 8: School History Info</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_difficulties' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 9: Difficulties Info</button></a>
+                <a href="{% url 'cc_difficulties' obj.child.username %}"><button name="step9" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 9: Difficulties Info</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_other_info' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 10: Other Info</button></a>
+                <a href="{% url 'cc_other_info' obj.child.username %}"><button name="step10" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 10: Other Info</button></a>
             </li>
         </ul>
     </div>
@@ -65,83 +65,83 @@
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Friends</label>
-                            {% render_field form.friends class="form-control" %}
+                            {% render_field form.friends class="form-control" value=cc.friends%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Siblings</label>
-                            {% render_field form.siblings class="form-control" %}
+                            {% render_field form.siblings class="form-control" value=cc.siblings%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Parents</label>
-                            {% render_field form.parents class="form-control" %}
+                            {% render_field form.parents class="form-control" value=cc.parents%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Adults and Others</label>
-                            {% render_field form.adults class="form-control" %}
+                            {% render_field form.adults class="form-control" value=cc.adults%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Maid</label>
-                            {% render_field form.maid class="form-control" %}
+                            {% render_field form.maid class="form-control" value=cc.maid%}
                         </div>
                         <div class="col-xl-6 col-lg-7 col-12 form-group">
                             <label>Age at which have attachment with maid (if any)</label>
-                            {% render_field form.maid_rel_age class="form-control" %}
+                            {% render_field form.maid_rel_age class="form-control" value=cc.age_maid%}
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Family's controlling authority</label>
-                            {% render_field form.fam_auth class="form-control" %}
+                            {% render_field form.fam_auth class="form-control" value=cc.fam_auth%}
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Family member close to the child</label>
-                            {% render_field form.link_fam class="form-control" %}
+                            {% render_field form.link_fam class="form-control" value=cc.fam_close%}
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Use Punishment/Reward System?</label>
                             <select class="select2" name="punishment_reward">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.punishment_sys == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.punishment_sys == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Who punishes (if any)</label>
-                            {% render_field form.punisher class="form-control" %}
+                            {% render_field form.punisher class="form-control" value=cc.punisher%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Is the Punishment</label>
-                            <select class="select2" name="punishment_reward">
+                            <select class="select2" name="punishment">
                                 <option value="">Please Select Option</option>
-                                <option value="immediate">Immediate</option>
-                                <option value="delayed">Delayed</option>
+                                <option value="immediate" {% if cc.punishment == "immediate"%}selected="selected"{% endif %}>Immediate</option>
+                                <option value="delayed" {% if cc.punishment == "delayed"%}selected="selected"{% endif %}>Delayed</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Child spend time at home in?</label>
-                            {% render_field form.spending_time class="form-control" %}
+                            {% render_field form.spending_time class="form-control" value=cc.spent_time_in%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Favourite game/hobby</label>
-                            {% render_field form.hobbies_child class="form-control" %}
+                            {% render_field form.hobbies_child class="form-control" value=cc.fav_hobby%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Main Language at home</label>
-                            {% render_field form.m_lang class="form-control" %}
+                            {% render_field form.m_lang class="form-control" value=cc.main_lang%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Any Other Language used</label>
-                            {% render_field form.o_lang class="form-control" %}
+                            {% render_field form.o_lang class="form-control" value=cc.other_lang%}
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Other Dialects used at home?</label>
                             <select class="select2" name="dialects">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.dilects == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.dilects == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-12 form-group mg-t-8" style="width: 100px">
-                            <a href={% url 'cc_family_history' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Previous</button></a>
-                            <a href={% url 'cc_child-behaviour' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Next</button></a>
+                            <a href={% url 'cc_family_history' obj.child.username %}><button name="prev" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Previous</button></a>
+                            <a href={% url 'cc_child-behaviour' obj.child.username %}><button name="next" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Next</button></a>
                         </div>
                     </div>
                 </div>

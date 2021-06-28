@@ -4,37 +4,40 @@
 
 {% block check_slots %}
 
+    <form class="new-added-form" method="POST">
+        {% csrf_token %}
+
     <div class="breadcrumbs-area">
         <h3>Child Case Form</h3>
         <br>
         <ul>
             <li><button style="margin-bottom: 8px" type="button" class="btn-fill-lmd radius-30 text-light bg-true-v">Step 1: Child Details</button></li>
             <li>
-                <a href="{% url 'cc_child_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button"  class="btn-fill-md radius-30 text-light bg-martini">Step 2: Development Of Child History</button></a>
+                <a href="{% url 'cc_child_history' obj.child.username %}"><button name="step2" style="margin-bottom: 8px" type="submit"  class="btn-fill-md radius-30 text-light bg-martini">Step 2: Development Of Child History</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_condition' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 3: Birth Period</button></a>
+                <a href="{% url 'cc_condition' obj.child.username %}"><button name="step3" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 3: Birth Period</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_stages_of_growth' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 4: Stages Of Growth</button></a>
+                <a href="{% url 'cc_stages_of_growth' obj.child.username %}"><button name="step4" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 4: Stages Of Growth</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_family_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 5: Family History</button></a>
+                <a href="{% url 'cc_family_history' obj.child.username %}"><button name="step5" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 5: Family History</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_social_development' obj.child.username %}"><button style="margin-bottom: 8px"  type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 6: Social/Personal Development</button></a>
+                <a href="{% url 'cc_social_development' obj.child.username %}"><button name="step6" style="margin-bottom: 8px"  type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 6: Social/Personal Development</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_child-behaviour' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 7: Child Behaviour</button></a>
+                <a href="{% url 'cc_child-behaviour' obj.child.username %}"><button name="step7" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 7: Child Behaviour</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_school_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 8: School History Info</button></a>
+                <a href="{% url 'cc_school_history' obj.child.username %}"><button name="step8" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 8: School History Info</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_difficulties' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 9: Difficulties Info</button></a>
+                <a href="{% url 'cc_difficulties' obj.child.username %}"><button name="step9" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 9: Difficulties Info</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_other_info' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 10: Other Info</button></a>
+                <a href="{% url 'cc_other_info' obj.child.username %}"><button name="step10" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 10: Other Info</button></a>
             </li>
         </ul>
     </div>
@@ -56,8 +59,7 @@
                     </div>
                 </div>
             </div>
-            <form class="new-added-form" method="POST">
-                {% csrf_token %}
+
                 <div class="tab-pane fade show active" id="tab1" role="tabpanel">
                     <div class="row">
                         {#-------Child Data-----#}
@@ -70,28 +72,28 @@
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Civil Number</label>
-                            {% render_field form.civil_number class="form-control" %}
+                            {% render_field form.civil_number class="form-control" value=cc.civil_number %}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>School Name*</label>
-                            {% render_field form.school_name class="form-control" %}
+                            {% render_field form.school_name|attr:"required" class="form-control" value=cc.school_name%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                            <label>Date Of Birth*</label>
-                            {% render_field form.dob type="text" placeholder="dd/mm/yyyy" class="form-control air-datepicker" data-position='bottom left'%}
+                            {% render_field form.dob|attr:"required" type="text" placeholder="dd/mm/yyyy" class="form-control air-datepicker" data-position='bottom left' value=cc.dob%}
                             <i class="fas fa-calendar-alt"></i>
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Place of Birth*</label>
-                            {% render_field form.place_of_birth class="form-control" %}
+                            {% render_field form.place_of_birth|attr:"required" class="form-control" value=cc.place_of_birth%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Nationality*</label>
-                            {% render_field form.nationality class="form-control" %}
+                            {% render_field form.nationality|attr:"required" class="form-control" value=cc.nationality %}
                         </div>
                          <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Grade*</label>
-                            {% render_field form.grade class="form-control" %}
+                            {% render_field form.grade|attr:"required" class="form-control" value=cc.grade %}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Date of Evaluation</label>
@@ -101,8 +103,8 @@
                             <label>Gender*</label>
                             <select class="select2" name="gender" required>
                                 <option value="">Please Select Gender</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <option value="male" {% if cc.gender == "male" %}selected="selected"{% endif %}>Male</option>
+                                <option value="female" {% if cc.gender == "female" %}selected="selected"{% endif %}>Female</option>
                             </select>
                         </div>
 
@@ -112,35 +114,35 @@
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Father Name*</label>
-                            {% render_field form.father_name class="form-control" %}
+                            {% render_field form.father_name|attr:"required" class="form-control" value=cc.f_name %}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Age</label>
-                            {% render_field form.age_f class="form-control" %}
+                            {% render_field form.age_f class="form-control" value=cc.f_age%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Nationality</label>
-                            {% render_field form.nationality_f class="form-control" %}
+                            {% render_field form.nationality_f class="form-control" value=cc.f_nationality%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Phone Number*</label>
-                            {% render_field form.phone_f class="form-control" %}
+                            {% render_field form.phone_f|attr:"required" class="form-control" value=cc.f_phone %}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Education Level</label>
-                            {% render_field form.education_level_f class="form-control" %}
+                            {% render_field form.education_level_f class="form-control" value=cc.f_education_level%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Current Occupation</label>
-                            {% render_field form.current_occupation_f class="form-control" %}
+                            {% render_field form.current_occupation_f class="form-control" value=cc.f_occupation%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Residence Address*</label>
-                            {% render_field form.residence_address_f class="form-control" %}
+                            {% render_field form.residence_address_f class="form-control" value=cc.f_address%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Email*</label>
-                            {% render_field form.email_f class="form-control" %}
+                            {% render_field form.email_f|attr:"required" class="form-control" value=cc.f_email %}
                         </div>
 
                         {#-------Mother Data-----#}
@@ -149,35 +151,35 @@
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Mother Name</label>
-                            {% render_field form.mother_name class="form-control" %}
+                            {% render_field form.mother_name class="form-control" value=cc.m_name%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Age</label>
-                            {% render_field form.age_m class="form-control" %}
+                            {% render_field form.age_m class="form-control" value=cc.m_age%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Nationality</label>
-                            {% render_field form.nationality_m class="form-control" %}
+                            {% render_field form.nationality_m class="form-control" value=cc.m_nationality%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Phone Number</label>
-                            {% render_field form.phone_m class="form-control" %}
+                            {% render_field form.phone_m class="form-control" value=cc.m_phone%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Education Level</label>
-                            {% render_field form.education_level_m class="form-control" %}
+                            {% render_field form.education_level_m class="form-control" value=cc.m_education_level%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Current Occupation</label>
-                            {% render_field form.current_occupation_m class="form-control" %}
+                            {% render_field form.current_occupation_m class="form-control" value=cc.m_occupation%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Residence Address</label>
-                            {% render_field form.residence_address_m class="form-control" %}
+                            {% render_field form.residence_address_m class="form-control" value=cc.m_address%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Email</label>
-                            {% render_field form.email_m class="form-control" %}
+                            {% render_field form.email_m class="form-control" value=cc.m_email%}
                         </div>
 
                         {#-------Guardian Data-----#}
@@ -186,31 +188,31 @@
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Guardian Name</label>
-                            {% render_field form.guardian_name class="form-control" %}
+                            {% render_field form.guardian_name class="form-control" value=cc.g_name%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Education Level</label>
-                            {% render_field form.education_level_g class="form-control" %}
+                            {% render_field form.education_level_g class="form-control" value=cc.g_education_level%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Relation To Child</label>
-                            {% render_field form.relation_to_child class="form-control" %}
+                            {% render_field form.relation_to_child class="form-control" value=cc.g_relation_child%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Phone Number</label>
-                            {% render_field form.phone_g class="form-control" %}
+                            {% render_field form.phone_g class="form-control" value=cc.g_phone%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Current Occupation</label>
-                            {% render_field form.current_occupation_g class="form-control" %}
+                            {% render_field form.current_occupation_g class="form-control" value=cc.g_occupation%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Residence Address</label>
-                            {% render_field form.residence_address_g class="form-control" %}
+                            {% render_field form.residence_address_g class="form-control" value=cc.g_address%}
                         </div>
                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                             <label>Email</label>
-                            {% render_field form.email_g class="form-control" %}
+                            {% render_field form.email_g class="form-control" value=cc.g_email%}
                         </div>
 
                         {#-------Family Info-----#}
@@ -221,125 +223,125 @@
                             <label>Relation Between Parents</label>
                             <select class="select2" name="relation_btw_parents">
                                 <option value="">Please Select Option</option>
-                                <option value="very_close">Very Close</option>
-                                <option value="far">Far</option>
-                                <option value="there_is_none">There is none</option>
+                                <option value="very_close" {% if cc.relation_btw_parents == "very_close"%}selected="selected"{% endif %}>Very Close</option>
+                                <option value="far" {% if cc.relation_btw_parents == "far"%}selected="selected"{% endif %}>Far</option>
+                                <option value="there_is_none" {% if cc.relation_btw_parents == "there_is_none"%}selected="selected"{% endif %}>There is none</option>
                             </select>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-12 form-group">
                             <label>Martial Status Of Parents</label>
                             <select class="select2" name="martial_status_parents">
                                 <option value="">Please Select Option</option>
-                                <option value="still_exists">Still Exists</option>
-                                <option value="does_not_exists">Does Not Exists</option>
+                                <option value="still_exists" {% if cc.martial_status == "still_exists"%}selected="selected"{% endif %}>Still Exists</option>
+                                <option value="does_not_exists" {% if cc.martial_status == "does_not_exists"%}selected="selected"{% endif %}>Does Not Exists</option>
                             </select>
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Indicate if Parent has passed away</label>
                             <select class="select2" name="parent_passed_away">
                                 <option value="">Please Select Option</option>
-                                <option value="the_mother">The Mother</option>
-                                <option value="the_father">The Father</option>
-                                <option value="both">Both</option>
-                                <option value="none">None</option>
+                                <option value="the_mother" {% if cc.passed_away == "the_mother"%}selected="selected"{% endif %}>The Mother</option>
+                                <option value="the_father" {% if cc.passed_away == "the_father"%}selected="selected"{% endif %}>The Father</option>
+                                <option value="both" {% if cc.passed_away == "both"%}selected="selected"{% endif %}>Both</option>
+                                <option value="none" {% if cc.passed_away == "none"%}selected="selected"{% endif %}>None</option>
                             </select>
                         </div>
                         <div class="col-xl-6 col-lg-12 col-12 form-group">
                             <label>Child living with in case father or mother is lost</label>
-                            {% render_field form.child_living_with class="form-control" %}
+                            {% render_field form.child_living_with class="form-control" value=cc.living_in_case%}
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Father has been married before?</label>
                             <select class="select2" name="father_married_before">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.father_married == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.father_married == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-12 form-group">
                             <label>Mother has been married before?</label>
                             <select class="select2" name="mother_married_before">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.mother_married == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.mother_married == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>If yes, When was it?</label>
                             <select class="select2" name="when_was_married">
                                 <option value="">Please Select Option</option>
-                                <option value="still_exists">Before Marriage of Parents</option>
-                                <option value="does_not_exists">After the parents separated</option>
+                                <option value="before_marriage" {% if cc.married_when == "before_marriage"%}selected="selected"{% endif %}>Before Marriage of Parents</option>
+                                <option value="after_separation" {% if cc.married_when == "after_separation"%}selected="selected"{% endif %}>After the parents separated</option>
                             </select>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-12 form-group">
                             <label>Second Marriage in family?</label>
                             <select class="select2" name="second_marriage">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.second_marriage == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.second_marriage == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>If yes, Nationality of Husband/Wife</label>
-                            {% render_field form.nationality_second_marriage class="form-control" %}
+                            {% render_field form.nationality_second_marriage class="form-control" value=cc.nationality_sec_m%}
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Number Of Family Members</label>
-                            {% render_field form.number_of_family_members class="form-control" %}
+                            {% render_field form.number_of_family_members class="form-control" value=cc.number_of_fam%}
                         </div>
                         <div class="col-12 form-group mg-t-8" style="width: 100px">
                             <p style="padding-top: 13px"><strong>Number of Siblings:</strong></p>
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Brothers</label>
-                            {% render_field form.number_of_brothers class="form-control" %}
+                            {% render_field form.number_of_brothers class="form-control" value=cc.number_of_bros%}
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Sisters</label>
-                            {% render_field form.number_of_sisters class="form-control" %}
+                            {% render_field form.number_of_sisters class="form-control" value=cc.number_of_sis%}
                         </div>
                         <div class="col-12 form-group mg-t-8" style="width: 100px">
                             <p style="padding-top: 13px"><strong>Number of Siblings from Father:</strong></p>
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Brothers</label>
-                            {% render_field form.number_of_brothers_from_father class="form-control" %}
+                            {% render_field form.number_of_brothers_from_father class="form-control" value=cc.number_of_bros_f%}
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Sisters</label>
-                            {% render_field form.number_of_sisters_from_father class="form-control" %}
+                            {% render_field form.number_of_sisters_from_father class="form-control" value=cc.number_of_sis_f%}
                         </div>
                         <div class="col-12 form-group mg-t-8" style="width: 100px">
                             <p style="padding-top: 13px"><strong>Number of Siblings from Mother:</strong></p>
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Brothers</label>
-                            {% render_field form.number_of_brothers_from_mother class="form-control" %}
+                            {% render_field form.number_of_brothers_from_mother class="form-control" value=cc.number_of_bros_m%}
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Sisters</label>
-                            {% render_field form.number_of_sisters_from_mother class="form-control" %}
+                            {% render_field form.number_of_sisters_from_mother class="form-control" value=cc.number_of_sis_m%}
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Order of the child among siblings</label>
-                            {% render_field form.order_sibling class="form-control" %}
+                            {% render_field form.order_sibling class="form-control" value=cc.order_sib%}
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Other People Living in the House?</label>
-                            {% render_field form.others_living_in_house class="form-control" placeholder="Relatives, Grandparents, Maid, etc."%}
+                            {% render_field form.others_living_in_house class="form-control" placeholder="Relatives, Grandparents, Maid, etc." value=cc.other_people_house%}
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>With whom the child lives currently?</label>
-                            {% render_field form.lives_with class="form-control"%}
+                            {% render_field form.lives_with class="form-control" value=cc.lives_current%}
                         </div>
                         <div class="col-12 form-group mg-t-8" style="width: 100px">
-                            <a href={% url 'cc_child_history' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Next</button></a>
+                            <a href={% url 'cc_child_history' obj.child.username %}><button name="next" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Next</button></a>
                         </div>
                     </div>
                 </div>
-            </form>
         </div>
     </div>
+    </form>
 
 {% endblock %}

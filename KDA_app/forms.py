@@ -95,21 +95,22 @@ class child_case_form(forms.Form):
     # Initial Data
     # Child Data
     civil_number = forms.IntegerField(min_value=0, required=False)
-    school_name = forms.CharField(required=True)
-    dob = forms.DateField(required=True)
-    place_of_birth = forms.CharField(required=True)
-    nationality = forms.CharField(required=True)
-    grade = forms.CharField(required=True)
+    school_name = forms.CharField(required=False)
+    # dob = forms.DateField(widget=forms.DateInput, required=True)
+    dob = forms.CharField(required=False)
+    place_of_birth = forms.CharField(required=False)
+    nationality = forms.CharField(required=False)
+    grade = forms.CharField(required=False)
 
     # Father Data
-    father_name = forms.CharField(required=True)
+    father_name = forms.CharField(required=False)
     age_f = forms.IntegerField(min_value=0, required=False)
     nationality_f = forms.CharField(required=False)
-    phone_f = forms.IntegerField(min_value=0, required=True)
     education_level_f = forms.CharField(required=False)
+    phone_f = forms.IntegerField(min_value=0, required=False)
     current_occupation_f = forms.CharField(required=False)
-    residence_address_f = forms.CharField(required=True)
-    email_f = forms.EmailField(required=True)
+    residence_address_f = forms.CharField(required=False)
+    email_f = forms.EmailField(required=False)
 
     # Mother Data
     mother_name = forms.CharField(required=False)
@@ -131,15 +132,7 @@ class child_case_form(forms.Form):
     email_g = forms.EmailField(required=False)
 
     # Family
-    relation_btw_parents = forms.ChoiceField(choices=Relationship_btw_parents, required=False)
-    martial_status_parents = forms.ChoiceField(choices=Martial_status_parents, required=False)
-    passed_away = forms.ChoiceField(choices=Parent_passed, required=False)
     child_living_with = forms.CharField(required=False)
-    father_married = forms.BooleanField(required=False)
-    marriage_when_f = forms.ChoiceField(choices=If_married)
-    mother_married = forms.BooleanField(required=False)
-    marriage_when_m = forms.ChoiceField(choices=If_married)
-    second_marriage = forms.BooleanField(required=False)
     nationality_second_marriage = forms.CharField(required=False)
     number_of_family_members = forms.IntegerField(min_value=0, required=False)
     number_of_brothers = forms.IntegerField(min_value=0, required=False)
@@ -161,7 +154,7 @@ class child_case_form(forms.Form):
     prob_disease_preg = forms.CharField(required=False)
 
     # delivery period
-    baby_weight_birth = forms.CharField(required=False)
+    baby_weight_birth = forms.IntegerField(min_value=0, required=False)
     prob_birth = forms.CharField(required=False)
     complications_birth = forms.CharField(required=False)
 
@@ -222,21 +215,21 @@ class child_case_form(forms.Form):
     fav_food = forms.CharField(required=False)
 
     # family history
-    hyperinactivity = forms.CharField(widget=forms.Textarea)
-    reading = forms.CharField(widget=forms.Textarea)
-    writing_dictating = forms.CharField(widget=forms.Textarea)
-    reading_inactivity = forms.CharField(widget=forms.Textarea)
-    calculating = forms.CharField(widget=forms.Textarea)
-    concentration = forms.CharField(widget=forms.Textarea)
-    pronouncing = forms.CharField(widget=forms.Textarea)
-    hearing = forms.CharField(widget=forms.Textarea)
-    visual = forms.CharField(widget=forms.Textarea)
-    mobility = forms.CharField(widget=forms.Textarea)
-    intellectual = forms.CharField(widget=forms.Textarea)
-    down_syndrome = forms.CharField(widget=forms.Textarea)
-    autism = forms.CharField(widget=forms.Textarea)
-    other_problems = forms.CharField(widget=forms.Textarea)
-    age_discovered = forms.CharField(required=False)
+    hyperinactivity = forms.CharField(widget=forms.Textarea, required=False)
+    reading = forms.CharField(widget=forms.Textarea, required=False)
+    writing_dictating = forms.CharField(widget=forms.Textarea, required=False)
+    reading_inactivity = forms.CharField(widget=forms.Textarea, required=False)
+    calculating = forms.CharField(widget=forms.Textarea, required=False)
+    concentration = forms.CharField(widget=forms.Textarea, required=False)
+    pronouncing = forms.CharField(widget=forms.Textarea, required=False)
+    hearing = forms.CharField(widget=forms.Textarea, required=False)
+    visual = forms.CharField(widget=forms.Textarea, required=False)
+    mobility = forms.CharField(widget=forms.Textarea, required=False)
+    intellectual = forms.CharField(widget=forms.Textarea, required=False)
+    down_syndrome = forms.CharField(widget=forms.Textarea, required=False)
+    autism = forms.CharField(widget=forms.Textarea, required=False)
+    other_problems = forms.CharField(widget=forms.Textarea, required=False)
+    age_discovered = forms.IntegerField(required=False)
     effecting_child = forms.CharField(required=False)
 
     # Social Relations
@@ -259,15 +252,15 @@ class child_case_form(forms.Form):
 
     # school
     s_name_1 = forms.CharField(required=False)
-    s_enroll_1 = forms.DateField(required=False)
+    s_enroll_1 = forms.CharField(required=False)
     s_beh_1 = forms.CharField(required=False)
 
     s_name_2 = forms.CharField(required=False)
-    s_enroll_2 = forms.DateField(required=False)
+    s_enroll_2 = forms.CharField(required=False)
     s_beh_2 = forms.CharField(required=False)
 
     s_name_3 = forms.CharField(required=False)
-    s_enroll_3 = forms.DateField(required=False)
+    s_enroll_3 = forms.CharField(required=False)
     s_beh_3 = forms.CharField(required=False)
 
     first_stage = forms.CharField(required=False)
@@ -294,7 +287,7 @@ class child_case_form(forms.Form):
     reason_3 = forms.CharField(widget=forms.Textarea, required=False)
     reason_4 = forms.CharField(widget=forms.Textarea, required=False)
     reason_5 = forms.CharField(widget=forms.Textarea, required=False)
-    date_last_a = forms.DateField(required=False)
+    date_last_a = forms.CharField(required=False)
     place_last_a = forms.CharField(required=False)
     other_info = forms.CharField(widget=forms.Textarea, required=False)
 

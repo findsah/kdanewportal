@@ -8,33 +8,33 @@
         <h3>Child Case Form</h3>
         <br>
         <ul>
-            <li><a href="{% url 'child-case' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 1: Child Details</button></a></li>
+            <li><a href="{% url 'child-case' obj.child.username %}"><button name="step1" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 1: Child Details</button></a></li>
             <li>
-                <a href="{% url 'cc_child_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 2: Development Of Child History</button></a>
+                <a href="{% url 'cc_child_history' obj.child.username %}"><button name="step2" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 2: Development Of Child History</button></a>
             </li>
             <li>
                 <button style="margin-bottom: 8px" href={% url 'receptionist' %} type="button" class="btn-fill-lmd radius-30 text-light bg-true-v">Step 3: Birth Period</button>
             </li>
             <li>
-                <a href="{% url 'cc_stages_of_growth' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 4: Stages Of Growth</button></a>
+                <a href="{% url 'cc_stages_of_growth' obj.child.username %}"><button name="step4" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 4: Stages Of Growth</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_family_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 5: Family History</button></a>
+                <a href="{% url 'cc_family_history' obj.child.username %}"><button name="step5" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 5: Family History</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_social_development' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 6: Social/Personal Development</button></a>
+                <a href="{% url 'cc_social_development' obj.child.username %}"><button name="step6" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 6: Social/Personal Development</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_child-behaviour' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 7: Child Behaviour</button></a>
+                <a href="{% url 'cc_child-behaviour' obj.child.username %}"><button name="step7" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 7: Child Behaviour</button></a>
             </li>
              <li>
-                 <a href="{% url 'cc_school_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 8: School History Info</button></a>
+                 <a href="{% url 'cc_school_history' obj.child.username %}"><button name="step8" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 8: School History Info</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_difficulties' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 9: Difficulties Info</button></a>
+                <a href="{% url 'cc_difficulties' obj.child.username %}"><button name="step9" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 9: Difficulties Info</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_other_info' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 10: Other Info</button></a>
+                <a href="{% url 'cc_other_info' obj.child.username %}"><button name="step10" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 10: Other Info</button></a>
             </li>
         </ul>
     </div>
@@ -70,62 +70,62 @@
                         <tbody>
                             <tr>
                                 <td>Severe High Temperature</td>
-                                <td>{% render_field form.extremely_high_temp_age %}</td>
-                                <td>{% render_field form.extremely_high_temp_dur %}</td>
+                                <td>{% render_field form.extremely_high_temp_age value=cc.extremely_high_temp_age%}</td>
+                                <td>{% render_field form.extremely_high_temp_dur value=cc.extremely_high_temp_dur%}</td>
                             </tr>
                             <tr>
                                 <td>Auditory problems/Ears Infection</td>
-                                <td>{% render_field form.ear_problems_age %}</td>
-                                <td>{% render_field form.ear_problems_dur %}</td>
+                                <td>{% render_field form.ear_problems_age value=cc.ear_problems_age%}</td>
+                                <td>{% render_field form.ear_problems_dur value=cc.ear_problems_dur%}</td>
                             </tr>
                             <tr>
                                 <td>Vision Problems</td>
-                                <td>{% render_field form.vision_problems_age %}</td>
-                                <td>{% render_field form.vision_problems_dur %}</td>
+                                <td>{% render_field form.vision_problems_age value=cc.vision_problems_age%}</td>
+                                <td>{% render_field form.vision_problems_dur value=cc.vision_problems_dur%}</td>
                             </tr>
                             <tr>
                                 <td>Juandice/Yellow Skin</td>
-                                <td>{% render_field form.juandice_age %}</td>
-                                <td>{% render_field form.juandice_dur %}</td>
+                                <td>{% render_field form.juandice_age value=cc.juandice_age%}</td>
+                                <td>{% render_field form.juandice_dur value=cc.juandice_dur%}</td>
                             </tr>
                             <tr>
                                 <td>Asthma</td>
-                                <td>{% render_field form.asthma_age %}</td>
-                                <td>{% render_field form.asthma_dur %}</td>
+                                <td>{% render_field form.asthma_age value=cc.asthma_age%}</td>
+                                <td>{% render_field form.asthma_dur value=cc.asthma_dur%}</td>
                             </tr>
                             <tr>
                                 <td>Allergy</td>
-                                <td>{% render_field form.allergy_age %}</td>
-                                <td>{% render_field form.allergy_dur %}</td>
+                                <td>{% render_field form.allergy_age value=cc.allergy_age%}</td>
+                                <td>{% render_field form.allergy_dur value=cc.allergy_dur%}</td>
                             </tr>
                             <tr>
                                 <td>Poisoning</td>
-                                <td>{% render_field form.poisoning_age %}</td>
-                                <td>{% render_field form.poisoning_dur %}</td>
+                                <td>{% render_field form.poisoning_age value=cc.poisoning_age%}</td>
+                                <td>{% render_field form.poisoning_dur value=cc.poisoning_dur%}</td>
                             </tr>
                             <tr>
                                 <td>Surgical Intervention</td>
-                                <td>{% render_field form.surgical_age %}</td>
-                                <td>{% render_field form.surgical_dur %}</td>
+                                <td>{% render_field form.surgical_age value=cc.surgical_age%}</td>
+                                <td>{% render_field form.surgical_dur value=cc.surgical_dur%}</td>
                             </tr>
                             <tr>
                                 <td>In case there was, please mention the surgery</td>
-                                <td>{% render_field form.surgery %}</td>
+                                <td>{% render_field form.surgery value=cc.surgery%}</td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td>Accidents</td>
-                                <td>{% render_field form.accident_age %}</td>
-                                <td>{% render_field form.accident_dur %}</td>
+                                <td>{% render_field form.accident_age value=cc.accident_age%}</td>
+                                <td>{% render_field form.accident_dur value=cc.accident_dur%}</td>
                             </tr>
                             <tr>
                                 <td>In case there was, please mention the type Accidents</td>
-                                <td>{% render_field form.accident %}</td>
+                                <td>{% render_field form.accident value=cc.accident%}</td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td>Does the child suffer from diseases or have health issues not mentioned?</td>
-                                <td>{% render_field form.not_mentioned_disease %}</td>
+                                <td>{% render_field form.not_mentioned_disease value=cc.not_mentioned_disease%}</td>
                                 <td></td>
                             </tr>
                         </tbody>
@@ -133,8 +133,8 @@
                 </div>
                 <div class="row">
                     <div class="col-12 form-group mg-t-8" style="width: 100px">
-                        <a href={% url 'cc_child_history' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Previous</button></a>
-                        <a href={% url 'cc_stages_of_growth' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Next</button></a>
+                        <a href={% url 'cc_child_history' obj.child.username %}><button name="prev" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Previous</button></a>
+                        <a href={% url 'cc_stages_of_growth' obj.child.username %}><button name="next" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Next</button></a>
                     </div>
                 </div>
             </form>

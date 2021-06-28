@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Person, Role, Hosted_Centres, Appointment, Availability, Slot
+from .models import Person, Role, Hosted_Centres, Appointment, Availability, Slot, Child_Case_Data
 
 
 # Register your models here.
@@ -52,3 +52,11 @@ class SlotAdmin(admin.ModelAdmin):
 
     class Meta:
         model = Slot
+
+
+@admin.register(Child_Case_Data)
+class Child_Case_DataAdmin(admin.ModelAdmin):
+    list_display = ['id', 'child']
+
+    class Meta:
+        model = Child_Case_Data

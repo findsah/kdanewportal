@@ -8,33 +8,33 @@
         <h3>Child Case Form</h3>
         <br>
         <ul>
-            <li><a href="{% url 'child-case' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 1: Child Details</button></a></li>
+            <li><a href="{% url 'child-case' obj.child.username %}"><button name="step1" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 1: Child Details</button></a></li>
             <li>
-                <a href="{% url 'cc_child_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 2: Development Of Child History</button></a>
+                <a href="{% url 'cc_child_history' obj.child.username %}"><button name="step2" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 2: Development Of Child History</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_condition' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 3: Birth Period</button></a>
+                <a href="{% url 'cc_condition' obj.child.username %}"><button name="step3" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 3: Birth Period</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_stages_of_growth' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 4: Stages Of Growth</button></a>
+                <a href="{% url 'cc_stages_of_growth' obj.child.username %}"><button name="step4" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 4: Stages Of Growth</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_family_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 5: Family History</button></a>
+                <a href="{% url 'cc_family_history' obj.child.username %}"><button name="step5" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 5: Family History</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_social_development' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 6: Social/Personal Development</button></a>
+                <a href="{% url 'cc_social_development' obj.child.username %}"><button name="step6" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 6: Social/Personal Development</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_child-behaviour' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 7: Child Behaviour</button></a>
+                <a href="{% url 'cc_child-behaviour' obj.child.username %}"><button name="step7" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 7: Child Behaviour</button></a>
             </li>
             <li>
-                <a href="{% url 'cc_school_history' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 8: School History Info</button></a>
+                <a href="{% url 'cc_school_history' obj.child.username %}"><button name="step8" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-dark-pastel-green">Step 8: School History Info</button></a>
             </li>
             <li>
                 <button style="margin-bottom: 8px" type="button" class="btn-fill-lmd radius-30 text-light bg-true-v">Step 9: Difficulties Info</button>
             </li>
             <li>
-                <a href="{% url 'cc_other_info' obj.child.username %}"><button style="margin-bottom: 8px" type="button" class="btn-fill-md radius-30 text-light bg-martini">Step 10: Other Info</button></a>
+                <a href="{% url 'cc_other_info' obj.child.username %}"><button name="step10" style="margin-bottom: 8px" type="submit" class="btn-fill-md radius-30 text-light bg-martini">Step 10: Other Info</button></a>
             </li>
         </ul>
     </div>
@@ -67,229 +67,229 @@
                             <label>Reading</label>
                             <select class="select2" name="reading_d">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.reading_diff == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.reading_diff == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Dictating</label>
                             <select class="select2" name="dictating_d">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.dictating == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.dictating == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Writing</label>
                             <select class="select2" name="writing_d">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.writing == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.writing == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Remembering nearby Information</label>
                             <select class="select2" name="remembering_nearby_d">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.remembering_nearby == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.remembering_nearby == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Recognizing Time</label>
                             <select class="select2" name="recog_time">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.recog_time == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.recog_time == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Recognizing Days/Weeks of Month</label>
                             <select class="select2" name="recog_days">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.recog_days == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.recog_days == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Recognizing Directions</label>
                             <select class="select2" name="recog_dir">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.recog_directions == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.recog_directions == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Completing work on time</label>
                             <select class="select2" name="work_on_time">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.completing_work == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.completing_work == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Focusing and paying Attention</label>
                             <select class="select2" name="focus_attention">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.focus_attention == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.focus_attention == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Assimilating/Understanding</label>
                             <select class="select2" name="understanding">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.understanding == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.understanding == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Remembering Remote Information</label>
                             <select class="select2" name="remembering_remote_d">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.remembering_remote == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.remembering_remote == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Understanding Relationships</label>
                             <select class="select2" name="relationships">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.relationships == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.relationships == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Expressing Ideas/telling Stories</label>
                             <select class="select2" name="expressing">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.expressing_ideas == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.expressing_ideas == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-8 col-lg-8 col-12 form-group">
                             <label>Remembering previous skills, concepts and experiences</label>
                             <select class="select2" name="remembering_d">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.remembering_skills == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.remembering_skills == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Moving from the Blackboard</label>
                             <select class="select2" name="blackboard">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.moving_blackboard == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.moving_blackboard == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Copying from printed material</label>
                             <select class="select2" name="printed">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.copying_printed == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.copying_printed == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Tends to flip words, letters and shapes</label>
                             <select class="select2" name="flip">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.flip_words == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.flip_words == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-7 col-lg-9 col-12 form-group">
                             <label>Confuses Numbers, Letters with similar components</label>
                             <select class="select2" name="numbers_letters">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.confuses_numbers == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.confuses_numbers == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-6 col-lg-9 col-12 form-group">
                             <label>Understanding and executing verbal instructions</label>
                             <select class="select2" name="verbal_ins">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.understanding_verbal == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.understanding_verbal == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Learning by listening</label>
                             <select class="select2" name="listening">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.learning_listening == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.learning_listening == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Always need to repeat instructions</label>
                             <select class="select2" name="repeat">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.repeat_instruction == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.repeat_instruction == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Distinguish Numbers</label>
                             <select class="select2" name="dis_numbers">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.distinguish_numbers == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.distinguish_numbers == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Memorizing multiplication tables</label>
                             <select class="select2" name="multiplication">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.memorizing_multiplication == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.memorizing_multiplication == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Memorizing phone numbers</label>
                             <select class="select2" name="phone_numbers_m">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.memorizing_phone == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.memorizing_phone == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-12 form-group">
                             <label>Counting up and upwards</label>
                             <select class="select2" name="counting">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.counting_up == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.counting_up == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-8 col-lg-12 col-12 form-group">
                             <label>Performing addition, subtraction, multiplication and division operations</label>
                             <select class="select2" name="add_subt">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.performing_add_subt == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.performing_add_subt == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-5 col-lg-6 col-12 form-group">
                             <label>Understanding mathematical symbols</label>
                             <select class="select2" name="maths_sym">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.understanding_mathematical == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.understanding_mathematical == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-xl-6 col-lg-9 col-12 form-group">
                             <label>Distinguishing size, quantity, distance and time</label>
                             <select class="select2" name="size">
                                 <option value="">Please Select Option</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {% if cc.distinguish_size == "yes"%}selected="selected"{% endif %}>Yes</option>
+                                <option value="no" {% if cc.distinguish_size == "no"%}selected="selected"{% endif %}>No</option>
                             </select>
                         </div>
                         <div class="col-12 form-group mg-t-8" style="width: 100px">
-                            <a href={% url 'cc_school_history' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Previous</button></a>
-                            <a href={% url 'cc_other_info' obj.child.username %}><button type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Next</button></a>
+                            <a href={% url 'cc_school_history' obj.child.username %}><button name="prev" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Previous</button></a>
+                            <a href={% url 'cc_other_info' obj.child.username %}><button name="next" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Next</button></a>
                         </div>
                     </div>
                 </div>
