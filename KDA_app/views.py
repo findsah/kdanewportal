@@ -172,11 +172,6 @@ def receptionist_dashboard(request):
 def appointment_list(request):
     appoin_list = Appointment.objects.all()
     delete_old_slots(current_time.date())
-    for obj in appoin_list:
-        if obj.child.child_form.count():
-            print("yess")
-        else:
-            print("NO")
     if request.method == "POST":
         s_by_name = request.POST['s_by_name']
         p_by_name = request.POST['p_by_name']

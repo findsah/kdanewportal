@@ -4,6 +4,9 @@
 
 {% block cc_family_history %}
 
+    <form class="new-added-form" method="POST">
+        {% csrf_token %}
+
     <div class="breadcrumbs-area">
         <h3>Child Case Form</h3>
         <br>
@@ -56,8 +59,7 @@
                     </div>
                 </div>
             </div>
-            <form class="new-added-form" method="POST">
-                {% csrf_token %}
+
                 <div class="tab-pane fade show active" id="tab1" role="tabpanel">
                     <div class="row">
                         <div class="col-12 form-group mg-t-8" style="width: 100px">
@@ -145,8 +147,9 @@
                         </div>
                     </div>
                 </div>
-            </form>
         </div>
     </div>
+    </form>
+
 
 {% endblock %}
