@@ -293,14 +293,14 @@ def search_psy(request):
 
 
 def availability(request, id):
-    p = Person.objects.get(id=id, role__name="Physiologist")
-    ava = Availability.objects.get(psychologist=p)
+    p = Person.objects.get(id=id)
+    ava, created = Availability.objects.get_or_create(psychologist=p)
     return render(request, 'static_files/availability_psy.html', {'ava': ava, 'psy': p})
 
 
 def availability_edit(request, id):
     dic = {}
-    p = Person.objects.get(id=id, role__name="Physiologist")
+    p = Person.objects.get(id=id)
     ava = Availability.objects.get(psychologist=p)
     dic['m_from'] = str(ava.m_available_time_from)
     dic['m_to'] = str(ava.m_available_time_to)
@@ -1498,3 +1498,38 @@ def send_link_form(request, id):
     messages.success(request, message="Email sent.")
 
     return redirect(appointment_list)
+
+
+def add_intervention(request):
+    students = Person.objects.filter(role__name="Student")
+    teachers = Person.objects.filter(role__name='Teacher')
+    return render(request, 'static_files/add_intervention.html', {'students': students, 'teachers': teachers})
+
+
+def search_teacher(request):
+    teachers = ''
+    subjects = []
+    if request.method == "POST":
+        teachers = Person.objects.filter(role__name='Teacher')
+        for teacher in teachers:
+            subjects.append(teacher.subject_teaching)
+        subj = request.POST['subject']
+        name = request.POST['search_by_name']
+        if subj:
+            teachers = Person.objects.filter(role__name="Teacher", subject_teaching__iexact=subj)
+        elif name:
+            name = name.split(" ")
+            for n in name:
+                teachers = Person.objects.filter(role__name="Teacher", first_name__icontains=n)
+                if not teachers:
+                    teachers = Person.objects.filter(role__name="Teacher", last_name__icontains=n)
+    else:
+        teachers = Person.objects.filter(role__name='Teacher')
+        for teacher in teachers:
+            subjects.append(teacher.subject_teaching)
+
+    return render(request, 'static_files/search_teacher.html', {'teachers': teachers, 'subjects': subjects})
+
+
+def weekly_grid(request):
+    return render(request, 'static_files/weekly_grid.html')

@@ -28,5 +28,8 @@ urlpatterns = [
     path('cc-school-history/<str:child_name>/', views.cc_school_history, name='cc_school_history'),
     path('cc-difficulties/<str:child_name>/', views.cc_diff_info, name='cc_difficulties'),
     path('cc-other-info/<str:child_name>/', views.cc_other_info, name='cc_other_info'),
-    path('send_link/<int:id>/', views.send_link_form, name='send_link')
+    path('send_link/<int:id>/', views.send_link_form, name='send_link'),
+    path('add-intervention/', views.add_intervention, name='add_intervention'),
+    path('search-teacher/', views.search_teacher, name='search_teacher'),
+    path('weekly-schedule/', views.weekly_grid, name='weekly')
 ]

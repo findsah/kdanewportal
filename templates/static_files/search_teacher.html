@@ -2,15 +2,15 @@
 {% load static %}
 {% load widget_tweaks %}
 
-{% block search_psy %}
+{% block search_teacher %}
 
     <div class="breadcrumbs-area">
-        <h3>Search Psychologist</h3>
+        <h3>Search Teacher</h3>
         <ul>
             <li>
                 <a href="index.html">Home</a>
             </li>
-            <li>Search Psychologist</li>
+            <li>Search Teacher</li>
         </ul>
     </div>
 
@@ -18,7 +18,7 @@
         <div class="card-body">
             <div class="heading-layout1">
                 <div class="item-title">
-                    <h3>All Available Psychologist</h3>
+                    <h3>All Available Teachers</h3>
                 </div>
                 <div class="dropdown">
                     <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -40,11 +40,19 @@
 {#                    <div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">#}
 {#                        <input type="text" placeholder="Search by ID ..." class="form-control" name="search_by_id">#}
 {#                    </div>#}
-                    <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group">
-                        <input type="text" placeholder="Search by Name ..." class="form-control" name="search_by_name">
+                    <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group" >
+                        <input type="text" placeholder="Search by Name ..." class="form-control" name="search_by_name" style="height: 51px">
                     </div>
-                    <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
-                        <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                    <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group">
+                        <select class="select2" name="subject">
+                            <option value="">Search by Subject ...</option>
+                            {% for subj in subjects %}
+                                <option value={{ subj.lower }}>{{ subj }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group" >
+                        <button type="submit" class="fw-btn-fill btn-gradient-yellow" style="height: 51px">SEARCH</button>
                     </div>
                 </div>
             </form>
@@ -60,7 +68,7 @@
                             </th>
                             <th>Full Name</th>
                             <th>Gender</th>
-                            <th>Qualification</th>
+                            <th>Subject</th>
                             <th>Mobile Number</th>
                             <th>Email</th>
                             <th>Availability</th>
@@ -68,20 +76,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for psy in psys %}
+                        {% for teacher in teachers %}
                             <tr>
                             <td>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input">
-                                    <label class="form-check-label">{{ psy.id }}</label>
+                                    <label class="form-check-label">{{ teacher.id }}</label>
                                 </div>
                             </td>
-                            <td>{{ psy.full_name }}</td>
-                            <td>{{ psy.gender }}</td>
-                            <td>{{ psy.qualification }}</td>
-                            <td>{{ psy.mobile_number }}</td>
-                            <td>{{ psy.email }} </td>
-                            <td><a href={% url 'availability' psy.id %}>Check Availability</a></td>
+                            <td>{{ teacher.full_name }}</td>
+                            <td>{{ teacher.gender }}</td>
+                            <td>{{ teacher.subject_teaching }}</td>
+                            <td>{{ teacher.mobile_number }}</td>
+                            <td>{{ teacher.email }} </td>
+                            <td><a href={% url 'availability' teacher.id %}>Check Availability</a></td>
                             <td>
                                 <div class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"

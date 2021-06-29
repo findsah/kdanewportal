@@ -293,10 +293,10 @@
                                             class="fas fa-angle-right"></i>Student Registered List</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="add-teacher.html" class="nav-link"><i class="fas fa-angle-right"></i>Psychologist Registered List</a>
+                                    <a href={% url 'search_psy' %} class="nav-link"><i class="fas fa-angle-right"></i>Psychologist Registered List</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="teacher-payment.html" class="nav-link"><i
+                                    <a href={% url 'search_teacher' %} class="nav-link"><i
                                             class="fas fa-angle-right"></i>Teacher Registered List</a>
                                 </li>
                             </ul>
@@ -323,7 +323,7 @@
                                     <a href="add-book.html" class="nav-link"><i class="fas fa-angle-right"></i>Psychologist Un-Available</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href={% url 'search_psy' %} class="nav-link"><i class="fas fa-angle-right"></i>Psychologist Available</a>
+                                    <a class="nav-link"><i class="fas fa-angle-right"></i>Psychologist Available</a>
                                 </li>
                                  <li class="nav-item">
                                     <a href={% url 'add_appointment' %} class="nav-link"><i class="fas fa-angle-right"></i>Add Appointment</a>
@@ -333,11 +333,11 @@
                         <li class="nav-item sidebar-nav-item">
                             <a href="#" class="nav-link"><span>Intervention Data</span></a>
                             <ul class="nav sub-group-menu">
+{#                                <li class="nav-item">#}
+{#                                    <a href="all-fees.html" class="nav-link"><i class="fas fa-angle-right"></i>Add Intervention</a>#}
+{#                                </li>#}
                                 <li class="nav-item">
-                                    <a href="all-fees.html" class="nav-link"><i class="fas fa-angle-right"></i>Add Intervention</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="all-expense.html" class="nav-link"><i
+                                    <a href={% url 'add_intervention' %} class="nav-link"><i
                                             class="fas fa-angle-right"></i>Add Intervention Weekly</a>
                                 </li>
                                 <li class="nav-item">
@@ -419,6 +419,9 @@
                 {% block cc_school_history %}{% endblock %}
                 {% block cc_diff_info %}{% endblock %}
                 {% block cc_other_info %}{% endblock %}
+                {% block add_intervention %}{% endblock %}
+                {% block search_teacher %}{% endblock %}
+                {% block weekly_grid %}{% endblock %}
                 <!-- Breadcubs Area Start Here -->
 {#                <div class="breadcrumbs-area">#}
 {#                    <h3>Admin Dashboard</h3>#}

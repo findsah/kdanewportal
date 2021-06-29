@@ -93,6 +93,7 @@ class Person(AbstractBaseUser, PermissionsMixin):
 
     mobile_number = models.IntegerField(null=True, blank=True)
     email = models.EmailField(unique=True)
+    subject_teaching = models.CharField(max_length=300, null=True, blank=True)
 
     approved = models.BooleanField(default=False)
 
@@ -516,3 +517,10 @@ class Child_Case_Data(models.Model):
     date_last_assessment = models.DateField(null=True, blank=True, default=timezone.now().date())
     place_last_assessment = models.CharField(max_length=200, null=True, blank=True, default='')
     other_info = models.TextField(null=True, blank=True)
+
+
+class Intervention(models.Model):
+    teacher = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='intervention1')
+    student = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='intervention2')
+    day = models.CharField(max_length=200)
+    time = models.TimeField()

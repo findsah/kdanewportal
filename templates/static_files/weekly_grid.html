@@ -1,0 +1,143 @@
+{% extends 'static_files/dashboard_receptionist.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block add_intervention %}
+
+    <div class="breadcrumbs-area">
+        <h3>Weekly Schedule</h3>
+        <ul>
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>Weekly Schedule</li>
+        </ul>
+    </div>
+
+    <div class="card height-auto">
+        <div class="card-body">
+            <div class="heading-layout1">
+                <div class="item-title">
+                    <h3>Select a slot</h3>
+                </div>
+               <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">...</a>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table display text-nowrap">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Saturday</th>
+                            <th>Sunday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                0900 - 1000
+                            </td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: red; width: 106px; cursor: auto" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                1000 - 1100
+                            </td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: red; width: 106px; cursor: auto" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                1100 - 1200
+                            </td>
+                             <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: red; width: 106px; cursor: auto" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                1200 - 1300
+                            </td>
+                             <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: red; width: 106px; cursor: auto" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                1300 - 1400
+                            </td>
+                             <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: red; width: 106px; cursor: auto" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                1400 - 1500
+                            </td>
+                            <td><button style="background-color: red; width: 106px; cursor: auto" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                1500 - 1600
+                            </td>
+                             <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: red; width: 106px; cursor: auto" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                1600 - 1700
+                            </td>
+                             <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: red; width: 106px; cursor: auto" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                        </tr>
+                     </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
