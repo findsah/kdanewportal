@@ -341,7 +341,7 @@
                                             class="fas fa-angle-right"></i>Add Intervention Weekly</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="add-expense.html" class="nav-link"><i class="fas fa-angle-right"></i>Intervention List</a>
+                                    <a href={% url 'search-intervention' %} class="nav-link"><i class="fas fa-angle-right"></i>Intervention List</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="add-expense.html" class="nav-link"><i class="fas fa-angle-right"></i>Closed List</a>
@@ -422,6 +422,8 @@
                 {% block add_intervention %}{% endblock %}
                 {% block search_teacher %}{% endblock %}
                 {% block weekly_grid %}{% endblock %}
+                {% block confirm_slot_teacher %}{% endblock %}
+                {% block search_intervention %}{% endblock %}
                 <!-- Breadcubs Area Start Here -->
 {#                <div class="breadcrumbs-area">#}
 {#                    <h3>Admin Dashboard</h3>#}

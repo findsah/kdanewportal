@@ -31,5 +31,7 @@ urlpatterns = [
     path('send_link/<int:id>/', views.send_link_form, name='send_link'),
     path('add-intervention/', views.add_intervention, name='add_intervention'),
     path('search-teacher/', views.search_teacher, name='search_teacher'),
-    path('weekly-schedule/', views.weekly_grid, name='weekly')
+    path('weekly-schedule/<str:username>/', views.weekly_grid, name='weekly'),
+    path('confirm-slot/<str:username>/<str:slot>/', views.confirm_slot, name="confirm-slot"),
+    path('search-intervention/', views.search_intervention, name='search-intervention')
 ]

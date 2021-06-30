@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Person, Role, Hosted_Centres, Appointment, Availability, Slot, Child_Case_Data
+from .models import Person, Role, Hosted_Centres, Appointment, Availability, Slot, Child_Case_Data, Intervention
 
 
 # Register your models here.
@@ -8,6 +8,7 @@ from .models import Person, Role, Hosted_Centres, Appointment, Availability, Slo
 @admin.register(Person)
 class PersonAdmin(admin.ModelAdmin):
     list_display = ['id', 'username', 'full_name', 'role']
+
     # prepopulated_fields = {'slug': ('full_name',)}
 
     class Meta:
@@ -60,3 +61,11 @@ class Child_Case_DataAdmin(admin.ModelAdmin):
 
     class Meta:
         model = Child_Case_Data
+
+
+@admin.register(Intervention)
+class InterventionAdmin(admin.ModelAdmin):
+    list_display = ['id', 'teacher', 'student', 'day', 'time']
+
+    class Meta:
+        model = Intervention

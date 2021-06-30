@@ -2,17 +2,15 @@
 {% load static %}
 {% load widget_tweaks %}
 
-{% block confirm_appointment %}
+{% block confirm_slot_teacher %}
 
     <div class="breadcrumbs-area">
-        <h3>Search Psychologist</h3>
+        <h3>Confirm Slot</h3>
         <ul>
             <li>
                 <a href="index.html">Home</a>
             </li>
-            <li><a href={% url 'add_appointment' %}>Add Appointment</a></li>
-            <li><a href={% url 'check_slots' psy.id child.id date%}>Confirm Slot</a></li>
-            <li>Confirm Appointment</li>
+            <li>Confirm Slot</li>
         </ul>
     </div>
 
@@ -20,7 +18,7 @@
         <div class="card-body">
             <div class="heading-layout1">
                 <div class="item-title">
-                    <h3>Confirm Your Appointment</h3>
+                    <h3>Confirm Your Weekly Intervention</h3>
                 </div>
                <div class="dropdown">
                     <a class="dropdown-toggle" href="#" role="button"
@@ -33,35 +31,35 @@
                     </div>
                 </div>
             </div>
+            <form method="post">
+                {% csrf_token %}
             <div class="row">
                 <div class="col-xl-3 col-lg-6 col-12 form-group">
                     <label>Child Name:</label>
-                    <select class="select2" name="child">
-                        <option value={{ child.full_name }}>{{ child.full_name }}</option>
-                        {% for child in children %}
-                            <option value={{ child.full_name }}>{{ child.full_name }}</option>
+                    <select class="select2" name="student" required>
+                        <option value=''>Select the Student</option>
+                        {% for student in students %}
+                            <option value={{ student.username }}>{{ student.full_name }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="col-xl-3 col-lg-6 col-12 form-group">
-                    <label>Your Selected Psychologist: </label>
-                    <p class="form-control" style="padding-top: 13px">{{ psy.full_name }}</p>
+                    <label>Your Selected Teacher: </label>
+                    <p class="form-control" style="padding-top: 13px; height: 50px">{{ teacher.full_name }}</p>
                 </div>
                 <div class="col-xl-3 col-lg-6 col-12 form-group">
-                    <label>Your Selected Date: </label>
-                    <p class="form-control" style="padding-top: 13px">{{ date }}</p>
+                    <label>Your Selected Day: </label>
+                    <p class="form-control" style="padding-top: 13px; height: 50px">{{ weekday }}</p>
                 </div>
                 <div class="col-xl-3 col-lg-6 col-12 form-group">
                     <label>Your Selected Time Slot: </label>
-                    <p class="form-control" style="padding-top: 13px">{{ time_s }}-{{ time_e }}</p>
+                    <p class="form-control" style="padding-top: 13px; height: 50px">{{ time_slot }}</p>
                 </div>
                 <div class="col-12 form-group mg-t-8">
-                    <form method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Confirm Appointment?</button>
-                    </form>
+                        <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Confirm?</button>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 

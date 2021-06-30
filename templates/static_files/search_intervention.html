@@ -1,0 +1,101 @@
+{% extends 'static_files/dashboard_receptionist.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block search_intervention %}
+
+    <div class="breadcrumbs-area">
+        <h3>All Intervention</h3>
+        <ul>
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>Search Intervention</li>
+        </ul>
+    </div>
+
+     <div class="card height-auto">
+        <div class="card-body">
+            <div class="heading-layout1">
+                <div class="item-title">
+                    <h3>All Interventions</h3>
+                </div>
+                <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">...</a>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#"><i
+                                class="fas fa-times text-orange-red"></i>Close</a>
+                        <a class="dropdown-item" href="#"><i
+                                class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                        <a class="dropdown-item" href="#"><i
+                                class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                    </div>
+                </div>
+            </div>
+            <form class="mg-b-20" method="post">
+                {% csrf_token %}
+                <div class="row gutters-8">
+                    <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group" >
+                        <input type="text" placeholder="Search by Student Name ..." class="form-control" name="search_by_name" style="height: 51px">
+                    </div>
+                    <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group" >
+                        <input type="text" placeholder="Search by Teacher Name ..." class="form-control" name="search_by_name" style="height: 51px">
+                    </div>
+                    <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group" >
+                        <input type="text" placeholder="Search by Subject ..." class="form-control" name="search_by_name" style="height: 51px">
+                    </div>
+                    <div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group" >
+                        <input type="text" placeholder="Search by Day ..." class="form-control" name="search_by_name" style="height: 51px">
+                    </div>
+                    <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group" >
+                        <button type="submit" class="fw-btn-fill btn-gradient-yellow" style="height: 51px">SEARCH</button>
+                    </div>
+                </div>
+            </form>
+            <div class="table-responsive">
+                <table class="table display data-table text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Teacher Name</th>
+                            <th>Subject</th>
+                            <th>Day</th>
+                            <th>Time</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for intervention in interventions %}
+                            <tr>
+                            <td>{{ intervention.student.full_name }}</td>
+                            <td>{{ intervention.teacher.full_name }}</td>
+                            <td>{{ intervention.teacher.subject_teaching }}</td>
+                            <td>{{ intervention.day }}</td>
+                            <td>{{ intervention.time }} </td>
+                            <td>
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <span class="flaticon-more-button-of-three-dots"></span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#"><i
+                                                class="fas fa-times text-orange-red"></i>Close</a>
+                                        <a class="dropdown-item" href="#"><i
+                                                class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                        <a class="dropdown-item" href="#"><i
+                                                class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                     </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

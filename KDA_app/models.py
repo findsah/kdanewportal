@@ -523,4 +523,10 @@ class Intervention(models.Model):
     teacher = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='intervention1')
     student = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='intervention2')
     day = models.CharField(max_length=200)
-    time = models.TimeField()
+    time = models.CharField(max_length=200)
+
+
+class teacher_occupied_slots(models.Model):
+    teacher = models.ForeignKey(Person, on_delete=models.CASCADE)
+    slot_time = models.TimeField()
+    slot_day = models.CharField(max_length=200)

@@ -37,104 +37,131 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Monday</th>
-                            <th>Tuesday</th>
-                            <th>Wednesday</th>
-                            <th>Thursday</th>
-                            <th>Saturday</th>
-                            <th>Sunday</th>
+                            <th>0900 - 1000</th>
+                            <th>1000 - 1100</th>
+                            <th>1100 - 1200</th>
+                            <th>1200 - 1300</th>
+                            <th>1300 - 1400</th>
+                            <th>1400 - 1500</th>
+                            <th>1500 - 1600</th>
+                            <th>1600 - 1700</th>
                         </tr>
                     </thead>
+                    <form class="new-added-form" method="POST">
+                    {% csrf_token %}
                     <tbody>
                         <tr>
                             <td>
-                                0900 - 1000
+                                Monday
                             </td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: red; width: 106px; cursor: auto" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            {% for x in content.s_mon %}
+                                <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            {% endfor %}
+                            {% for x in content.mon %}
+                                {% if x in content2.mon %}
+                                    <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                                    {% else %}
+                                    <td><button name="{{ x }}-mon" style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                                {% endif %}
+                            {% endfor %}
+                             {% for x in content.e_mon %}
+                                <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            {% endfor %}
+
+{#                            <td><button style="background-color: red; width: 106px; cursor: auto" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>#}
                         </tr>
                         <tr>
                             <td>
-                                1000 - 1100
+                                Tuesday
                             </td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: red; width: 106px; cursor: auto" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            {% for x in content.s_tue %}
+                                <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            {% endfor %}
+                            {% for x in content.tue %}
+                                {% if x in content2.tue %}
+                                    <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                                    {% else %}
+                                    <td><button name="{{ x }}-tue" style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                                {% endif %}
+                            {% endfor %}
+                            {% for x in content.e_tue %}
+                                <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            {% endfor %}
                         </tr>
                         <tr>
                             <td>
-                                1100 - 1200
+                                Wednesday
                             </td>
-                             <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: red; width: 106px; cursor: auto" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            {% for x in content.s_wed %}
+                                <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            {% endfor %}
+                            {% for x in content.wed %}
+                                {% if x in content2.wed %}
+                                    <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                                    {% else %}
+                                    <td><button name="{{ x }}-wed" style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                                {% endif %}
+                            {% endfor %}
+                            {% for x in content.e_wed %}
+                                <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            {% endfor %}
                         </tr>
                         <tr>
                             <td>
-                                1200 - 1300
+                                Thursday
                             </td>
-                             <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: red; width: 106px; cursor: auto" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            {% for x in content.s_th %}
+                                <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            {% endfor %}
+                            {% for x in content.th %}
+                                {% if x in content2.th %}
+                                    <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                                    {% else %}
+                                    <td><button name="{{ x }}-th" style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                                {% endif %}
+                            {% endfor %}
+                            {% for x in content.e_th %}
+                                <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            {% endfor %}
                         </tr>
                         <tr>
                             <td>
-                                1300 - 1400
+                                Saturday
                             </td>
-                             <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: red; width: 106px; cursor: auto" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            {% for x in content.s_sat %}
+                                <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            {% endfor %}
+                            {% for x in content.sat %}
+                                {% if x in content2.sat %}
+                                    <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                                    {% else %}
+                                    <td><button name="{{ x }}-sat" style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                                {% endif %}
+                            {% endfor %}
+                            {% for x in content.e_sat %}
+                                <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            {% endfor %}
                         </tr>
                         <tr>
                             <td>
-                                1400 - 1500
+                                Sunday
                             </td>
-                            <td><button style="background-color: red; width: 106px; cursor: auto" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                1500 - 1600
-                            </td>
-                             <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: red; width: 106px; cursor: auto" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                1600 - 1700
-                            </td>
-                             <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: red; width: 106px; cursor: auto" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
-                            <td><button style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                            {% for x in content.s_sun %}
+                                <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            {% endfor %}
+                           {% for x in content.sun %}
+                               {% if x in content2.sun %}
+                                    <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                                    {% else %}
+                                    <td><button name="{{ x }}-sun" style="background-color: #00ee56" type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-check"></i></button></td>
+                                {% endif %}
+                           {% endfor %}
+                            {% for x in content.e_sun %}
+                                <td><button style="background-color: red; width: 106px; cursor: auto" type="button" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"><i class="fas fa-times"></i></button></td>
+                            {% endfor %}
                         </tr>
                      </tbody>
+                    </form>
                 </table>
             </div>
         </div>

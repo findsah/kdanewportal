@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import Person, Role, Hosted_Centres, Appointment, Availability, Slot, Child_Case_Data
+from .models import Person, Role, Hosted_Centres, Appointment, Availability, Slot, Child_Case_Data, \
+    teacher_occupied_slots, Intervention
 from django.contrib import messages
 from .forms import login_form, register_form, register_centre_form, add_appointment_form, child_case_form
 from django.contrib.auth.forms import AuthenticationForm
@@ -8,7 +9,6 @@ from django.contrib.auth import authenticate
 from django.utils import timezone
 import datetime
 from django.core.mail import send_mail
-
 
 # Create your views here.
 
@@ -1501,9 +1501,14 @@ def send_link_form(request, id):
 
 
 def add_intervention(request):
-    students = Person.objects.filter(role__name="Student")
-    teachers = Person.objects.filter(role__name='Teacher')
-    return render(request, 'static_files/add_intervention.html', {'students': students, 'teachers': teachers})
+    if request.method == "POST":
+        teacher_username = request.POST['teacher']
+        # teacher = Person.objects.get(username=teacher_username)
+
+        return redirect(weekly_grid, teacher_username)
+    else:
+        teachers = Person.objects.filter(role__name='Teacher')
+    return render(request, 'static_files/add_intervention.html', {'teachers': teachers})
 
 
 def search_teacher(request):
@@ -1530,6 +1535,105 @@ def search_teacher(request):
 
     return render(request, 'static_files/search_teacher.html', {'teachers': teachers, 'subjects': subjects})
 
+time_slots_r = {'0900-1000': '0', '1000-1100': '1', '1100-1200': '2', '1200-1300': '3', '1300-1400': '4', '1400-1500': '5'
+                , '1500-1600': '6', '1600-1700': '7'}
 
-def weekly_grid(request):
-    return render(request, 'static_files/weekly_grid.html')
+def weekly_grid(request, username):
+    ava = Availability.objects.get(psychologist__username=username)
+    if request.method == "POST":
+        content = ''
+        slots = ''
+        for x in range(8):
+            if f'{x}-mon' in request.POST:
+                start_time = int(int(str(ava.m_available_time_from).split(':')[0]) - 9)
+                print(f'{x + start_time}-mon')
+                return redirect(confirm_slot, username, f'{x + start_time}-m')
+            elif f'{x}-tue' in request.POST:
+                start_time = int(int(str(ava.tu_available_time_from).split(':')[0]) - 9)
+                print(f'{x}-tue')
+                return redirect(confirm_slot, username, f'{x + start_time}-tu')
+            elif f'{x}-wed' in request.POST:
+                start_time = int(int(str(ava.w_available_time_from).split(':')[0]) - 9)
+                print(f'{x}-wed')
+                return redirect(confirm_slot, username, f'{x + start_time}-w')
+            elif f'{x}-th' in request.POST:
+                start_time = int(int(str(ava.th_available_time_from).split(':')[0]) - 9)
+                print(f'{x + start_time}-th')
+                return redirect(confirm_slot, username, f'{x + start_time}-th')
+            elif f'{x}-sat' in request.POST:
+                start_time = int(int(str(ava.sa_available_time_from).split(':')[0]) - 9)
+                print(f'{x}-sat')
+                return redirect(confirm_slot, username, f'{x + start_time}-sa')
+            elif f'{x}-sun' in request.POST:
+                start_time = int(int(str(ava.su_available_time_from).split(':')[0]) - 9)
+                print(f'{x}-sun')
+                return redirect(confirm_slot, username, f'{x + start_time}-su')
+    else:
+        content = {'s_mon': range(int(str(ava.m_available_time_from).split(':')[0]) - 9),
+                   'mon': range(int(str(ava.m_available_time_to).split(':')[0]) - int(
+                       str(ava.m_available_time_from).split(':')[0])),
+                   'e_mon': range(17 - int(str(ava.m_available_time_to).split(':')[0])),
+                   's_tue': range(int(str(ava.tu_available_time_from).split(':')[0]) - 9),
+                   'tue': range(int(str(ava.tu_available_time_to).split(':')[0]) - int(
+                       str(ava.tu_available_time_from).split(':')[0])),
+                   'e_tue': range(17 - int(str(ava.tu_available_time_to).split(':')[0])),
+                   's_wed': range(int(str(ava.w_available_time_from).split(':')[0]) - 9),
+                   'wed': range(int(str(ava.w_available_time_to).split(':')[0]) - int(
+                       str(ava.w_available_time_from).split(':')[0])),
+                   'e_wed': range(17 - int(str(ava.w_available_time_to).split(':')[0])),
+                   's_th': range(int(str(ava.th_available_time_from).split(':')[0]) - 9),
+                   'th': range(int(str(ava.th_available_time_to).split(':')[0]) - int(
+                       str(ava.th_available_time_from).split(':')[0])),
+                   'e_th': range(17 - int(str(ava.th_available_time_to).split(':')[0])),
+                   's_sat': range(int(str(ava.sa_available_time_from).split(':')[0]) - 9),
+                   'sat': range(int(str(ava.sa_available_time_to).split(':')[0]) - int(
+                       str(ava.sa_available_time_from).split(':')[0])),
+                   'e_sat': range(17 - int(str(ava.sa_available_time_to).split(':')[0])),
+                   's_sun': range(int(str(ava.su_available_time_from).split(':')[0]) - 9),
+                   'sun': range(int(str(ava.su_available_time_to).split(':')[0]) - int(
+                       str(ava.su_available_time_from).split(':')[0])),
+                   'e_sun': range(17 - int(str(ava.su_available_time_to).split(':')[0]))}
+
+        intv_m = [int(time_slots_r[x.time])-(int(str(ava.m_available_time_from).split(':')[0]) - 9) for x in Intervention.objects.filter(teacher__username=username, day="Monday")]
+        intv_tu = [int(time_slots_r[x.time])-(int(str(ava.tu_available_time_from).split(':')[0]) - 9) for x in Intervention.objects.filter(teacher__username=username, day="Tuesday")]
+        intv_w = [int(time_slots_r[x.time])-(int(str(ava.w_available_time_from).split(':')[0]) - 9) for x in Intervention.objects.filter(teacher__username=username, day="Wednesday")]
+        intv_th = [int(time_slots_r[x.time])-(int(str(ava.th_available_time_from).split(':')[0]) - 9) for x in Intervention.objects.filter(teacher__username=username, day="Thursday")]
+        intv_sa = [int(time_slots_r[x.time])-(int(str(ava.sa_available_time_from).split(':')[0]) - 9) for x in Intervention.objects.filter(teacher__username=username, day="Saturday")]
+        intv_su = [int(time_slots_r[x.time])-(int(str(ava.su_available_time_from).split(':')[0]) - 9) for x in Intervention.objects.filter(teacher__username=username, day="Sunday")]
+
+        content2 = {'mon': intv_m, 'tue': intv_tu, 'wed': intv_w,
+                    'th': intv_th, 'sat': intv_sa, 'sun': intv_su}
+        print(content2)
+        return render(request, 'static_files/weekly_grid.html', {'content': content, 'content2': content2})
+
+
+week = {'m': 'Monday', 'tu': 'Tuesday', 'w': 'Wednesday', 'th': 'Thursday', 'sa': 'Saturday', 'su': 'Sunday'}
+time_slots = {'0': '0900-1000', '1': '1000-1100', '2': '1100-1200', '3': '1200-1300', '4': '1300-1400', '5': '1400-1500'
+    , '6': '1500-1600', '7': '1600-1700'}
+
+
+
+def confirm_slot(request, username, slot):
+    teacher = Person.objects.get(username=username)
+    slot1 = slot.split('-')
+    if request.method == "POST":
+        student = Person.objects.get(username=request.POST['student'])
+        if Intervention.objects.filter(student=student, teacher=teacher).count() == 0:
+            intervention = Intervention.objects.create(teacher=teacher, student=student, day=week[slot1[1]],
+                                                       time=f'{time_slots[slot1[0]]}')
+            return redirect(add_intervention)
+        else:
+            messages.warning(request, message="Student Already has Weekly Intervention with this Teacher")
+            return redirect(confirm_slot, username, slot)
+    else:
+        weekday = week[slot1[1]]
+        timeslot = f'{time_slots[slot1[0]]}'
+        students = Person.objects.filter(role__name="Student")
+
+        return render(request, 'static_files/confirm_slot_teacher.html', {'weekday': weekday, 'time_slot': timeslot,
+                                                                          'students': students, 'teacher': teacher})
+
+
+def search_intervention(request):
+    interventions = Intervention.objects.all()
+    return render(request, 'static_files/search_intervention.html', {'interventions': interventions})
