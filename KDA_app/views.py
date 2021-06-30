@@ -1635,5 +1635,28 @@ def confirm_slot(request, username, slot):
 
 
 def search_intervention(request):
-    interventions = Intervention.objects.all()
+    if request.method == "POST":
+        interventions = Intervention.objects.all()
+        sname = request.POST['search_by_sname']
+        tname = request.POST['search_by_tname']
+        day = request.POST['search_by_d']
+        subj = request.POST['search_by_s']
+        if subj:
+            interventions = interventions.filter(teacher__subject_teaching__icontains=subj)
+        if sname:
+            name = sname.split(" ")
+            for n in name:
+                interventions = interventions.filter(student__first_name__icontains=n)
+                if not interventions:
+                    interventions = Intervention.objects.filter(student__last_name__icontains=n)
+        if tname:
+            name = tname.split(" ")
+            for n in name:
+                interventions = interventions.filter(teacher__first_name__icontains=n)
+                if not interventions:
+                    interventions = Intervention.objects.filter(teacher__last_name__icontains=n)
+        if day:
+            interventions = interventions.filter(day__icontains=day)
+    else:
+        interventions = Intervention.objects.all()
     return render(request, 'static_files/search_intervention.html', {'interventions': interventions})
